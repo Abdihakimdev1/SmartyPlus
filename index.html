@@ -2,6 +2,7 @@
 <html lang="so">
 <head>
     <meta charset="UTF-8">
+<<<<<<< HEAD
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
     <meta name="theme-color" content="#0a1220">
     <title>Smarty Plus System Finance</title>
@@ -12,6 +13,13 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+=======
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Smarty Plus System Finance</title>
+    <link rel="icon" href="icon.png">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+>>>>>>> 6acd52bc040ec4f5bb6cf13e07a252baf303e063
     <link rel="stylesheet" href="style.css">
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
@@ -20,12 +28,388 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.8.2/jspdf.plugin.autotable.min.js"></script>
 
 
+<<<<<<< HEAD
 
+=======
+    <style>
+        /* Main color: #10b981 */
+        :root {
+        --primary: #10b981;
+        --primary-dark: #059669;
+        --primary-light: #34d399;
+        --primary-bg: rgba(16, 185, 129, 0.1);
+        --primary-bg-hover: rgba(16, 185, 129, 0.2);
+        }
+
+        * {
+        transition: all 0.2s ease;
+        }
+
+        body.theme-dark {
+        background: #0f172a;
+        color: #e2e8f0;
+        }
+
+        body.theme-light {
+        background: #f1f5f9;
+        color: #1e293b;
+        }
+
+        /* Sidebar buttons */
+        .sidebar-btn {
+        transition: all 0.3s;
+        border-left: 3px solid transparent;
+        }
+
+        .sidebar-btn.active {
+        background: var(--primary-bg);
+        color: var(--primary);
+        border-left-color: var(--primary);
+        }
+
+        .sidebar-btn:hover:not(.active) {
+        background: rgba(255, 255, 255, 0.05);
+        }
+
+        .theme-light .sidebar-btn:hover:not(.active) {
+        background: rgba(0, 0, 0, 0.05);
+        }
+
+        /* Mobile nav */
+        .mobile-nav-btn {
+        transition: all 0.3s;
+        padding: 4px 12px;
+        border-radius: 12px;
+        }
+
+        .mobile-nav-btn.active {
+        color: var(--primary);
+        background: var(--primary-bg);
+        }
+
+        /* Toggle switch */
+        .toggle-switch {
+        width: 56px;
+        height: 28px;
+        background: #334155;
+        border-radius: 30px;
+        position: relative;
+        transition: 0.3s;
+        cursor: pointer;
+        border: 2px solid transparent;
+        }
+
+        .theme-light .toggle-switch {
+        background: #cbd5e1;
+        }
+
+        .toggle-switch.active {
+        background: var(--primary);
+        border-color: var(--primary);
+        }
+
+        .toggle-knob {
+        width: 22px;
+        height: 22px;
+        background: white;
+        border-radius: 50%;
+        position: absolute;
+        top: 1px;
+        left: 1px;
+        transition: 0.3s;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        .toggle-switch.active .toggle-knob {
+        left: 29px;
+        }
+
+        /* Buttons */
+        .btn-primary {
+        background: var(--primary);
+        color: white;
+        border: none;
+        padding: 12px 24px;
+        border-radius: 12px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        }
+
+        .btn-primary:hover {
+        background: var(--primary-dark);
+        transform: translateY(-2px);
+        box-shadow: 0 8px 20px rgba(16, 185, 129, 0.3);
+        }
+
+        .btn-primary:active {
+        transform: translateY(0);
+        }
+
+        .btn-outline {
+        background: transparent;
+        color: var(--primary);
+        border: 2px solid var(--primary);
+        padding: 10px 22px;
+        border-radius: 12px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        }
+
+        .btn-outline:hover {
+        background: var(--primary);
+        color: white;
+        transform: translateY(-2px);
+        }
+
+        .btn-danger {
+        background: #ef4444;
+        color: white;
+        border: none;
+        padding: 12px 24px;
+        border-radius: 12px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        }
+
+        .btn-danger:hover {
+        background: #dc2626;
+        transform: translateY(-2px);
+        box-shadow: 0 8px 20px rgba(239, 68, 68, 0.3);
+        }
+
+        /* Cards - Same size */
+        .card {
+        background: rgba(30, 41, 59, 0.9);
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(51, 65, 85, 0.5);
+        border-radius: 16px;
+        padding: 24px;
+        height: 100%;
+        min-height: 200px;
+        transition: all 0.3s;
+        display: flex;
+        flex-direction: column;
+        }
+
+        .theme-light .card {
+        background: rgba(255, 255, 255, 0.9);
+        border-color: rgba(203, 213, 225, 0.5);
+        }
+
+        .card:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 12px 30px rgba(16, 185, 129, 0.15);
+        border-color: var(--primary);
+        }
+
+        /* Account cards */
+        .account-card {
+        background: rgba(30, 41, 59, 0.9);
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(51, 65, 85, 0.5);
+        border-radius: 16px;
+        padding: 20px;
+        height: 180px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        transition: all 0.3s;
+        cursor: pointer;
+        }
+
+        .theme-light .account-card {
+        background: rgba(255, 255, 255, 0.9);
+        border-color: rgba(203, 213, 225, 0.5);
+        }
+
+        .account-card:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 12px 30px rgba(16, 185, 129, 0.15);
+        border-color: var(--primary);
+        }
+
+        /* Inputs */
+        .input-field {
+        background: rgba(15, 23, 42, 0.5);
+        border: 2px solid rgba(51, 65, 85, 0.5);
+        border-radius: 12px;
+        padding: 12px 16px;
+        color: #e2e8f0;
+        width: 100%;
+        transition: all 0.3s;
+        outline: none;
+        }
+
+        .theme-light .input-field {
+        background: rgba(255, 255, 255, 0.5);
+        color: #1e293b;
+        border-color: rgba(203, 213, 225, 0.5);
+        }
+
+        .input-field:focus {
+        border-color: var(--primary);
+        box-shadow: 0 0 0 4px rgba(16, 185, 129, 0.1);
+        }
+
+        .input-field::placeholder {
+        color: #64748b;
+        }
+
+        .theme-light .input-field::placeholder {
+        color: #94a3b8;
+        }
+
+        select.input-field {
+        appearance: none;
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%2364748b' d='M6 8L1 3h10z'/%3E%3C/svg%3E");
+        background-repeat: no-repeat;
+        background-position: right 12px center;
+        padding-right: 36px;
+        }
+
+        /* Loading spinner */
+        .loader {
+        border: 4px solid rgba(16, 185, 129, 0.1);
+        border-top-color: var(--primary);
+        border-radius: 50%;
+        width: 48px;
+        height: 48px;
+        animation: spin 0.8s linear infinite;
+        }
+
+        @keyframes spin {
+        to {
+            transform: rotate(360deg);
+        }
+        }
+
+        /* Scrollbar */
+        ::-webkit-scrollbar {
+        width: 6px;
+        height: 6px;
+        }
+
+        ::-webkit-scrollbar-track {
+        background: rgba(30, 41, 59, 0.5);
+        border-radius: 10px;
+        }
+
+        ::-webkit-scrollbar-thumb {
+        background: var(--primary);
+        border-radius: 10px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+        background: var(--primary-dark);
+        }
+
+        /* Tables */
+        .table-container {
+        overflow-x: auto;
+        border-radius: 12px;
+        border: 1px solid rgba(51, 65, 85, 0.5);
+        }
+
+        .table-container table {
+        width: 100%;
+        border-collapse: collapse;
+        font-size: 0.875rem;
+        }
+
+        .table-container th {
+        background: rgba(15, 23, 42, 0.5);
+        color: var(--primary);
+        padding: 12px 16px;
+        text-align: left;
+        font-weight: 600;
+        text-transform: uppercase;
+        font-size: 0.75rem;
+        border-bottom: 2px solid var(--primary);
+        }
+
+        .theme-light .table-container th {
+        background: rgba(241, 245, 249, 0.5);
+        }
+
+        .table-container td {
+        padding: 12px 16px;
+        border-bottom: 1px solid rgba(51, 65, 85, 0.3);
+        }
+
+        .table-container tr:hover td {
+        background: rgba(16, 185, 129, 0.05);
+        }
+
+        /* Session warning */
+        #sessionWarning {
+        background: var(--primary);
+        box-shadow: 0 8px 30px rgba(16, 185, 129, 0.3);
+        }
+
+        /* Responsive cards grid */
+        .accounts-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+        gap: 20px;
+        }
+
+        @media (max-width: 640px) {
+        .accounts-grid {
+            grid-template-columns: 1fr;
+        }
+        .card {
+            min-height: 160px;
+            padding: 16px;
+        }
+        .account-card {
+            height: 150px;
+            padding: 16px;
+        }
+        }
+
+        @media (min-width: 641px) and (max-width: 1024px) {
+        .accounts-grid {
+            grid-template-columns: repeat(2, 1fr);
+        }
+        }
+
+        @media (min-width: 1025px) {
+        .accounts-grid {
+            grid-template-columns: repeat(3, 1fr);
+        }
+        }
+
+        /* Hide scrollbar for mobile */
+        .no-scrollbar::-webkit-scrollbar {
+        display: none;
+        }
+        .no-scrollbar {
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+        }
+    </style>
+>>>>>>> 6acd52bc040ec4f5bb6cf13e07a252baf303e063
 
 </head>
 <body class="theme-dark" id="bodyCtx">
 
     <!-- ==================== LOGIN PAGE ==================== -->
+<<<<<<< HEAD
     <div id="loginPage" class="auth">
 
         <!-- Brand side -->
@@ -85,6 +469,90 @@
                     <p><i class="fa-solid fa-shield-halved"></i>Fast & Secure system</p>
                     <p>Your data is protected and encrypted.</p>
                 </div>
+=======
+    <div id="loginPage" class="min-h-screen flex items-center justify-center p-4" style="background: var(--page-bg);">
+
+        <div class="card" style="max-width: 420px; width: 100%; min-height: auto;">
+
+            <!-- Logo -->
+            <div class="text-center mb-8">
+
+                <div class="inline-flex items-center justify-center w-20 h-20 rounded-full" style="background: var(--primary); color: white; box-shadow: 0 8px 30px rgba(16, 185, 129, 0.3);">
+                    <i class="fa-solid fa-wallet text-3xl"></i>
+                </div>
+
+                <h2 class="text-3xl font-bold mt-4" style="color: var(--primary);">
+                    SmartyPlus
+                </h2>
+
+                <p class="text-slate-400 text-sm mt-2 flex items-center justify-center gap-2">
+                    <i class="fa-solid fa-shield-halved" style="color: var(--primary);"></i>
+                    Log in to access and manage your accounts.
+                </p>
+
+            </div>
+
+            <!-- Login Form -->
+            <form id="loginForm" onsubmit="handleLogin(event)" class="space-y-5">
+
+                <div>
+                    <label class="flex items-center gap-2 text-xs font-semibold uppercase text-slate-400 mb-2">
+                        <i class="fa-solid fa-user" style="color: var(--primary);"></i>
+                        Username or email address
+                    </label>
+                    <div class="relative">
+                        <i class="fa-solid fa-user absolute left-4 top-1/2 -translate-y-1/2 text-slate-500"></i>
+                        <input
+                        type="text"
+                        id="loginUser"
+
+                        required
+                        class="input-field pl-12">
+                    </div>
+                </div>
+
+                <div>
+                    <label class="flex items-center gap-2 text-xs font-semibold uppercase text-slate-400 mb-2">
+                        <i class="fa-solid fa-lock" style="color: var(--primary);"></i>
+                        Password
+                    </label>
+                    <div class="relative">
+                        <i class="fa-solid fa-key absolute left-4 top-1/2 -translate-y-1/2 text-slate-500"></i>
+                        <input
+                        type="password"
+                        id="loginPass"
+                        placeholder="Enter your key"
+                        required
+                        class="input-field pl-12 pr-12">
+                        <button type="button" onclick="togglePasswordVisibility('loginPass', 'loginPassEye')" aria-label="Show password"
+                            class="absolute right-3 top-1/2 -translate-y-1/2 text-slate-500 hover:text-emerald-400">
+                            <i id="loginPassEye" class="fa-solid fa-eye"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <button type="submit" class="btn-primary w-full">
+                    <i class="fa-solid fa-right-to-bracket"></i>
+                    Login
+                </button>
+
+                <p id="loginError" class="hidden flex items-center justify-center gap-2 text-red-400 text-sm">
+                    <i class="fa-solid fa-circle-exclamation"></i>
+                    Invalid Credentials!
+                </p>
+
+            </form>
+
+            <div class="mt-8 pt-5 border-t border-slate-700/50 text-center">
+                <p class="flex items-center justify-center gap-2 text-sm font-semibold" style="color: var(--primary);">
+                    <i class="fa-solid fa-shield-halved"></i>
+                    Fast & Secure system
+                </p>
+                <p class="mt-2 text-xs text-slate-500 flex items-center justify-center gap-2">
+                    <i class="fa-solid fa-lock" style="color: var(--primary); opacity: 0.5;"></i>
+                    Your data is protected and encrypted.
+                </p>
+>>>>>>> 6acd52bc040ec4f5bb6cf13e07a252baf303e063
             </div>
         </div>
     </div>
@@ -176,7 +644,13 @@
             <aside class="hidden md:flex w-64 flex-col justify-between p-6" style="background: var(--surface-strong); backdrop-filter: blur(10px); border-right: 1px solid var(--border-color);">
                 <div>
                     <div class="flex items-center gap-3 mb-8">
+<<<<<<< HEAD
                         <img class="brand-mark" src="logo/logo-icon.svg" alt="SmartyPlus">
+=======
+                        <div class="p-2.5 rounded-xl text-white" style="background: var(--primary); box-shadow: 0 8px 25px rgba(16, 185, 129, 0.3);">
+                            <i class="fa-solid fa-wallet text-xl"></i>
+                        </div>
+>>>>>>> 6acd52bc040ec4f5bb6cf13e07a252baf303e063
                         <span class="text-xl font-bold tracking-wider" style="color: var(--primary);">SmartyPlus</span>
                     </div>
                     <nav class="space-y-1.5">
