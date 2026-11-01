@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
     <meta name="theme-color" content="#0a1220">
-    <title>Smarty Plus System Finance</title>
+    <title>Fincore Financeal System</title>
     <link rel="icon" type="image/svg+xml" href="logo/logo-icon.svg">
     <link rel="icon" type="image/png" sizes="32x32" href="logo/logo-icon-32.png">
     <link rel="apple-touch-icon" href="logo/logo-icon-192.png">
@@ -32,7 +32,7 @@
         <div class="auth-brand">
             <div class="auth-logo">
                 <img class="brand-mark" src="logo/logo-icon.svg" alt="SmartyPlus">
-                <span>SmartyPlus</span>
+                <span>Fincore</span>
             </div>
 
             <p class="auth-tagline" data-lang-en="Your money, clear and in your hands." data-lang-so="Lacagtaada, si cad oo gacantaada ah.">Lacagtaada, si cad oo gacantaada ah.</p>
@@ -57,7 +57,7 @@
                         <label for="loginUser">Username or email address</label>
                         <div class="field-wrap">
                             <i class="fa-solid fa-user lead"></i>
-                            <input type="text" id="loginUser" required class="input-field" autocomplete="username" autocapitalize="none" spellcheck="false">
+                            <input type="email" id="loginUser" required class="input-field" autocomplete="username" autocapitalize="none" spellcheck="false">
                         </div>
                     </div>
 
@@ -82,7 +82,7 @@
                 </form>
 
                 <div class="auth-foot">
-                    <p><i class="fa-solid fa-shield-halved"></i>Fast & Secure system</p>
+                    <p><i class="fa-solid fa-shield-halved"></i>Secure Fincore System</p>
                     <p>Your data is protected and encrypted.</p>
                 </div>
             </div>
@@ -454,13 +454,13 @@
                                 <div>
                                     <label class="block text-xs font-semibold uppercase text-slate-400 mb-2 flex items-center gap-2">
                                         <i class="fa-solid fa-circle-dollar" style="color: var(--primary);"></i>
-                                        <span data-lang-en="Repayment Amount" data-lang-so="Cadadka Lagu Soo Celiyay">Cadadka Soo Celinta</span>
+                                        <span data-lang-en="Repayment Amount" data-lang-so="Qadarka Lagu Soo Celiyay">Qadarka lagusoo Celinta</span>
                                     </label>
                                     <input type="number" step="any" id="repayAmount" required class="input-field" placeholder="0.00">
                                 </div>
                                 <button type="submit" class="btn-primary w-full mt-auto">
                                     <i class="fa-solid fa-check-circle"></i>
-                                    <span data-lang-en="Submit Repayment" data-lang-so="Hagaaji soo celinta">Hagaaji soo celinta</span>
+                                    <span data-lang-en="Submit Repayment" data-lang-so="Gudbi soo celinta">Gudbi soo celinta</span>
                                 </button>
                             </form>
                         </div>
@@ -474,7 +474,7 @@
                             <table>
                                 <thead>
                                     <tr>
-                                        <th>Qofka</th>
+                                        <th>Person name</th>
                                         <th>Account</th>
                                         <th>Paid before</th>
                                         <th>Remaining</th>
@@ -500,7 +500,7 @@
                             <div class="flex items-center justify-between">
                                 <span class="text-sm text-slate-400 flex items-center gap-2">
                                     <i class="fa-solid fa-arrow-down" style="color: var(--primary);"></i>
-                                    <span data-lang-en="Total Deposits" data-lang-so="Wadarta Ku Shubashada">Ku Shubashada</span>
+                                    <span data-lang-en="Total Deposits" data-lang-so="Kushubis">Ku Shubashada</span>
                                 </span>
                                 <span class="text-2xl font-bold" style="color: var(--primary);" id="totalDeposits">0</span>
                             </div>
@@ -509,7 +509,7 @@
                             <div class="flex items-center justify-between">
                                 <span class="text-sm text-slate-400 flex items-center gap-2">
                                     <i class="fa-solid fa-arrow-up" style="color: var(--primary);"></i>
-                                    <span data-lang-en="Total Withdrawals" data-lang-so="Wadarta Ka Bixinta">Ka Bixinta</span>
+                                    <span data-lang-en="Total Withdrawals" data-lang-so="Lacag labax">Kala Bax lacag</span>
                                 </span>
                                 <span class="text-2xl font-bold" style="color: var(--primary);" id="totalWithdrawals">0</span>
                             </div>
@@ -582,7 +582,7 @@
                                         <th>#</th>
                                         <th data-lang-en="Date" data-lang-so="Taariikh">Taariikh</th>
                                         <th data-lang-en="Type" data-lang-so="Nooca">Nooca</th>
-                                        <th data-lang-en="Account" data-lang-so="Account-ka">Akoonka</th>
+                                        <th data-lang-en="Account" data-lang-so="Xisaab">Akoonka</th>
                                         <th data-lang-en="Currency" data-lang-so="Lacagta">Lacagta</th>
                                         <th data-lang-en="Amount" data-lang-so="Qadarka">Qadarka</th>
                                         <th data-lang-en="Description" data-lang-so="Faahfaahin">Faahfaahin</th>
@@ -598,7 +598,7 @@
                 <section id="view-settings" class="space-y-6 hidden">
                     <h2 class="text-lg md:text-2xl font-bold border-b-2 pb-2" style="color: var(--primary); border-color: var(--primary);">
                         <i class="fa-solid fa-gear mr-2" style="color: var(--primary);"></i>
-                        System settings
+                     settings
                     </h2>
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                         <div class="card">
@@ -617,8 +617,8 @@
                                             <i class="fa-solid fa-camera"></i>
                                             <span data-lang-en="Change photo" data-lang-so="Bedel sawirka">Bedel sawirka</span>
                                         </button>
-                                        <p class="text-xs text-slate-500 mt-2" data-lang-en="JPG or PNG, up to 2MB" data-lang-so="you can use JPG or PNG, to 2MB">
-                                            JPG ama PNG, ilaa 2MB
+                                        <p class="text-xs text-slate-500 mt-2" data-lang-en="JPG or PNG, up to 2MB" data-lang-so="JPG or PNG, to 2MB is only supported">
+                                            JPG am PNG, ilaa 2MB ayaa la taageraya
                                         </p>
                                     </div>
                                 </div>
@@ -632,20 +632,20 @@
                                 <div>
                                     <label class="block text-xs font-semibold uppercase text-slate-400 mb-2 flex items-center gap-2">
                                         <i class="fa-solid fa-briefcase" style="color: var(--primary);"></i>
-                                        User role
+                                User role
                                     </label>
-                                    <input type="text" id="settingsRole" class="input-field">
+                                    <input type="email" id="settingsRole" class="input-field">
                                 </div>
                                 <div>
                                     <label class="block text-xs font-semibold uppercase text-slate-400 mb-2 flex items-center gap-2">
                                         <i class="fa-solid fa-lock" style="color: var(--primary);"></i>
-                                        Update password
+                                        Change Password
                                     </label>
-                                    <input type="password" id="settingsNewPassword" placeholder="Not available" class="input-field" readonly>
+                                    <input type="password" id="settingsNewPassword" placeholder="Not available" class="input-field">
                                 </div>
                                 <button onclick="saveProfile()" class="btn-primary w-full mt-auto">
                                     <i class="fa-solid fa-floppy-disk"></i>
-                                    Save info
+                                    Save Changes
                                 </button>
                                 <div class="border-t border-slate-700/50 pt-4 mt-4">
                                     <button onclick="confirmLogout()" class="btn-danger w-full">
@@ -664,7 +664,7 @@
                                 <div>
                                     <h3 class="flex items-center gap-2 text-lg font-bold mb-3" style="color: var(--primary);">
                                         <i class="fa-solid fa-language"></i>
-                                        System Language
+                                         Language
                                     </h3>
                                     <div class="grid grid-cols-2 gap-3">
                                         <button onclick="setLanguage('en')" id="lang-btn-en" class="btn-outline w-full">
@@ -682,7 +682,7 @@
                                 <div>
                                     <h3 class="flex items-center gap-2 text-lg font-bold mb-3" style="color: var(--primary);">
                                         <i class="fa-solid fa-palette"></i>
-                                        Appearance / Theme
+                                        Appearance
                                     </h3>
                                     <div class="flex items-center justify-between rounded-2xl p-4 border" style="background: var(--primary-bg); border-color: rgba(51, 65, 85, 0.5);">
                                         <span class="flex items-center gap-2 text-slate-300">
@@ -706,15 +706,15 @@
                                         Management
                                     </h3>
                                     <div class="grid grid-cols-2 gap-3">
-                                        <button onclick="resetAllData()" disabld class="btn-danger opacity-80" title="Reset All">
+                                        <button onclick="resetAllData()" disabld class="btn-danger opacity-80" title="Reset All" disabled>
                                             <i class="fa-solid fa-trash"></i>
                                             Reset
                                         </button>
                                         <button onclick="clearLoans()" disaled class="btn-primary opacity-80" title="Clear Loans">
-                                            <i class="fa-solid fa-money-bill-wave"></i>
+                                            <i class="fa-solid fa-money-bill-wave" disabled></i>
                                             Clear
                                         </button>
-                                        <button onclick="clearTransactions()" disabled class="btn-primary opacity-80  col-span-2">                     <i class="fa-solid fa-receipt"></i>
+                                        <button onclick="clearTransactions()" disabled class="btn-primary opacity-80  col-span-2">                     <i class="fa-solid fa-receipt" disabled></i>
                                             Clear Transactions
                                         </button>
                                     </div>
@@ -743,15 +743,15 @@
                         <div class="grid grid-cols-2 gap-3">
                             <button type="button" onclick="exportCSV()" class="btn-outline">
                                 <i class="fa-solid fa-file-csv"></i>
-                                <span data-lang-en="Export CSV" data-lang-so="Soo Dag CSV">Soo Dag CSV</span>
+                                <span data-lang-en="Export CSV" data-lang-so="Soo Dag CSV">La Dag CSV</span>
                             </button>
                             <button type="button" onclick="downloadPDF()" class="btn-outline">
                                 <i class="fa-solid fa-file-pdf"></i>
-                                <span data-lang-en="Download PDF" data-lang-so="Soo Dag PDF">Soo Dag PDF</span>
+                                <span data-lang-en="Download PDF" data-lang-so="Soo Dag PDF">La dag PDF</span>
                             </button>
                             <button type="button" onclick="exportJSON()" class="btn-outline">
                                 <i class="fa-solid fa-file-code"></i>
-                                <span data-lang-en="Export JSON" data-lang-so="Soo Dag JSON">Soo Dag JSON</span>
+                                <span data-lang-en="Export JSON" data-lang-so="Soo Dag JSON">La Dag JSON</span>
                             </button>
                             <button type="button" class="btn-outline" onclick="document.getElementById('importJsonInput').click()">
                                 <i class="fa-solid fa-file-import"></i>
