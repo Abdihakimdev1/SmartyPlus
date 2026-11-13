@@ -97,6 +97,18 @@
             <div class="loader"></div>
         </div>
 
+        <!-- ActivityPlus-style status popup -->
+        <div id="appPopup" class="app-popup-overlay hidden" role="dialog" aria-modal="true" aria-labelledby="appPopupTitle">
+            <div class="app-popup-card">
+                <div id="appPopupIcon" class="app-popup-icon success"><i class="fa-solid fa-check"></i></div>
+                <h3 id="appPopupTitle">Success!</h3>
+                <p id="appPopupMessage">Your action was completed.</p>
+                <div id="appPopupActions" class="app-popup-actions">
+                    <button type="button" class="btn-primary app-popup-done" onclick="closeAppPopup()">Done</button>
+                </div>
+            </div>
+        </div>
+
         <!-- Session Timeout Warning -->
         <div id="sessionWarning" class="hidden fixed top-4 left-1/2 transform -translate-x-1/2 text-white px-6 py-3 rounded-xl shadow-2xl z-50 text-sm font-bold flex items-center gap-3" style="background: var(--primary); box-shadow: 0 8px 30px rgba(16, 185, 129, 0.3);">
             <i class="fa-solid fa-triangle-exclamation"></i>
@@ -191,6 +203,10 @@
                         <button onclick="switchTab('withdraw')" class="sidebar-btn w-full flex items-center gap-3 px-4 py-3 rounded-xl text-slate-400 hover:text-white font-medium text-left" id="sidebar-withdraw">
                             <i class="fa-solid fa-arrow-up" style="color: var(--primary);"></i>
                             <span data-lang-en="Withdraw Money" data-lang-so="Labax Lacag">Labax lacag</span>
+                        </button>
+                        <button onclick="switchTab('transfer')" class="sidebar-btn w-full flex items-center gap-3 px-4 py-3 rounded-xl text-slate-400 hover:text-white font-medium text-left" id="sidebar-transfer">
+                            <i class="fa-solid fa-right-left" style="color: var(--primary);"></i>
+                            <span data-lang-en="Transfer" data-lang-so="Wareeji">Transfer</span>
                         </button>
                         <button onclick="switchTab('loans')" class="sidebar-btn w-full flex items-center gap-3 px-4 py-3 rounded-xl text-slate-400 hover:text-white font-medium text-left" id="sidebar-loans">
                             <i class="fa-solid fa-hand-holding-dollar" style="color: var(--primary);"></i>
@@ -389,6 +405,47 @@
                     </div>
                 </section>
 
+                <!-- TRANSFER -->
+                <section id="view-transfer" class="space-y-4 hidden">
+                    <h2 class="text-lg md:text-2xl font-bold pb-2" style="color: var(--primary);">
+                        <i class="fa-solid fa-right-left mr-2" style="color: var(--primary);"></i>
+                        <span data-lang-en="Wallet Transfer" data-lang-so="Wareejinta Wallet-yada">Wallet Transfer</span>
+                    </h2>
+                    <div class="card" style="max-width: 680px; width: 100%; min-height: auto;">
+                        <div class="mb-4 rounded-xl p-4" style="background: var(--primary-bg);">
+                            <p class="font-semibold" style="color: var(--primary);" data-lang-en="Same-currency transfers only" data-lang-so="Kaliya lacag isku nooc ah ayaa la isku wareejin karaa">Same-currency transfers only</p>
+                            <p class="text-sm mt-1 text-slate-400" data-lang-en="USD to USD, SLSH to SLSH, or ETB to ETB. Different currencies are not allowed." data-lang-so="USD ilaa USD, SLSH ilaa SLSH, ama ETB ilaa ETB. Lacag kala duwan lama isku wareejin karo.">USD to USD, SLSH to SLSH, or ETB to ETB. Different currencies are not allowed.</p>
+                        </div>
+                        <form id="transferForm" onsubmit="handleTransfer(event)" class="space-y-5">
+                            <div>
+                                <label class="block text-sm font-semibold mb-2" data-lang-en="From wallet" data-lang-so="Wallet-ka laga dirayo">From wallet</label>
+                                <select id="transferFrom" class="input-field" required onchange="updateTransferCurrencyOptions()"></select>
+                            </div>
+                            <div class="flex justify-center">
+                                <span class="rounded-lg px-4 py-2" style="background:var(--primary-bg);color:var(--primary)"><i class="fa-solid fa-arrow-down"></i></span>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-semibold mb-2" data-lang-en="To wallet" data-lang-so="Wallet-ka loo dirayo">To wallet</label>
+                                <select id="transferTo" class="input-field" required onchange="updateTransferCurrencyOptions()"></select>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-semibold mb-2" data-lang-en="Currency" data-lang-so="Nooca lacagta">Currency</label>
+                                <select id="transferCurrency" class="input-field" required onchange="updateTransferCurrencyOptions()"></select>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-semibold mb-2" data-lang-en="Amount" data-lang-so="Qadarka lacagta">Amount</label>
+                                <input id="transferAmount" type="number" min="0.01" step="0.01" class="input-field" placeholder="0.00" required>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-semibold mb-2" data-lang-en="Description (optional)" data-lang-so="Faahfaahin (ikhtiyaari)">Description (optional)</label>
+                                <input id="transferDescription" type="text" class="input-field" maxlength="160" placeholder="Transfer note">
+                            </div>
+                            <p id="transferBalanceHint" class="text-sm text-slate-400"></p>
+                            <button type="submit" class="btn-primary w-full"><i class="fa-solid fa-right-left"></i><span data-lang-en="Transfer now" data-lang-so="Hadda wareeji">Transfer now</span></button>
+                        </form>
+                    </div>
+                </section>
+
                 <!-- LOANS -->
                 <section id="view-loans" class="space-y-6 hidden">
                     <h2 class="text-lg md:text-2xl font-bold border-b-2 pb-2" style="color: var(--primary); border-color: var(--primary);">
@@ -538,6 +595,7 @@
                                     <option value="withdraw" data-lang-en="Withdrawals" data-lang-so="Ka Bax">Ka Bax</option>
                                     <option value="loan" data-lang-en="Loans" data-lang-so="Amaah">Amaah</option>
                                     <option value="repayment" data-lang-en="Repayments" data-lang-so="Soo Celin">Soo Celin</option>
+                                    <option value="transfer" data-lang-en="Transfers" data-lang-so="Wareejin">Wareejin</option>
                                 </select>
                             </div>
                             <div class="flex-1 min-w-[150px]">
@@ -561,7 +619,7 @@
                                 </button>
                                 <button onclick="clearReportFilters()" class="btn-outline">
                                     <i class="fa-solid fa-rotate-right"></i>
-                                    <span data-lang-en="Clear" data-lang-so="Nadiifi">Nadiifi</span>
+                                    <span data-lang-en="Clear" data-lang-so="Clear">Clear</span>
                                 </button>
                             </div>
                         </div>
@@ -582,7 +640,7 @@
                                         <th>#</th>
                                         <th data-lang-en="Date" data-lang-so="Taariikh">Taariikh</th>
                                         <th data-lang-en="Type" data-lang-so="Nooca">Nooca</th>
-                                        <th data-lang-en="Account" data-lang-so="Xisaab">Akoonka</th>
+                                        <th data-lang-en="Account" data-lang-so="Xisaab">Xisaab</th>
                                         <th data-lang-en="Currency" data-lang-so="Lacagta">Lacagta</th>
                                         <th data-lang-en="Amount" data-lang-so="Qadarka">Qadarka</th>
                                         <th data-lang-en="Description" data-lang-so="Faahfaahin">Faahfaahin</th>
@@ -598,7 +656,7 @@
                 <section id="view-settings" class="space-y-6 hidden">
                     <h2 class="text-lg md:text-2xl font-bold border-b-2 pb-2" style="color: var(--primary); border-color: var(--primary);">
                         <i class="fa-solid fa-gear mr-2" style="color: var(--primary);"></i>
-                     settings
+                     Settings
                     </h2>
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                         <div class="card">
@@ -780,6 +838,10 @@
             <button onclick="switchTab('withdraw')" class="mobile-nav-btn flex flex-col items-center gap-0.5 text-slate-400" id="mobile-withdraw">
                 <i class="fa-solid fa-arrow-up text-lg"></i>
                 <span class="text-[10px] font-medium" data-lang-en="Withdraw" data-lang-so="La Bax">La Bax</span>
+            </button>
+            <button onclick="switchTab('transfer')" class="mobile-nav-btn flex flex-col items-center gap-0.5 text-slate-400" id="mobile-transfer">
+                <i class="fa-solid fa-right-left text-lg"></i>
+                <span class="text-[10px] font-medium" data-lang-en="Transfer" data-lang-so="Wareeji">Transfer</span>
             </button>
             <button onclick="switchTab('loans')" class="mobile-nav-btn flex flex-col items-center gap-0.5 text-slate-400" id="mobile-loans">
                 <i class="fa-solid fa-hand-holding-dollar text-lg"></i>

@@ -71,7 +71,7 @@ async function handleLogout(force = false) {
         const message = currentLang === 'en'
             ? 'Are you sure you want to log out?'
             : 'Ma hubtaa inaad rabto inaad ka baxdo nidaamka?';
-        if (!confirm(message)) return;
+        if (!await showConfirmPopup(message)) return;
     }
     await sb.auth.signOut();
     currentUser = null;
@@ -308,9 +308,60 @@ function updateEyeIcon() {
     }
 }
 
+function showAppPopup(type, message) {
+    const overlay = document.getElementById('appPopup');
+    const icon = document.getElementById('appPopupIcon');
+    const title = document.getElementById('appPopupTitle');
+    const text = document.getElementById('appPopupMessage');
+    if (!overlay || !icon || !title || !text) {
+        console.log(message);
+        return;
+    }
+    const config = {
+        success: { title: 'Success!', icon: 'fa-check', cls: 'success' },
+        error: { title: 'Error!', icon: 'fa-xmark', cls: 'error' },
+        warning: { title: 'Warning!', icon: 'fa-exclamation', cls: 'warning' },
+        info: { title: 'Notice', icon: 'fa-info', cls: 'warning' }
+    }[type] || { title: 'Notice', icon: 'fa-info', cls: 'warning' };
+    icon.className = `app-popup-icon ${config.cls}`;
+    icon.innerHTML = `<i class="fa-solid ${config.icon}"></i>`;
+    title.textContent = config.title;
+    text.textContent = String(message || '');
+    const actions = document.getElementById('appPopupActions');
+    if (actions) actions.innerHTML = '<button type="button" class="btn-primary app-popup-done" onclick="closeAppPopup()">Done</button>';
+    overlay.classList.remove('hidden');
+}
+
+function closeAppPopup() {
+    document.getElementById('appPopup')?.classList.add('hidden');
+}
+
+function showConfirmPopup(message) {
+    return new Promise(resolve => {
+        const overlay = document.getElementById('appPopup');
+        const icon = document.getElementById('appPopupIcon');
+        const title = document.getElementById('appPopupTitle');
+        const text = document.getElementById('appPopupMessage');
+        const actions = document.getElementById('appPopupActions');
+        if (!overlay || !actions) { resolve(window.confirm(message)); return; }
+        icon.className = 'app-popup-icon warning';
+        icon.innerHTML = '<i class="fa-solid fa-exclamation"></i>';
+        title.textContent = 'Warning!';
+        text.textContent = message;
+        actions.innerHTML = `
+            <div class="app-popup-actions">
+                <button type="button" class="btn-outline" id="appPopupCancel">Cancel</button>
+                <button type="button" class="btn-primary" id="appPopupConfirm">Confirm</button>
+            </div>`;
+        overlay.classList.remove('hidden');
+        document.getElementById('appPopupCancel').onclick = () => { closeAppPopup(); resolve(false); };
+        document.getElementById('appPopupConfirm').onclick = () => { closeAppPopup(); resolve(true); };
+    });
+}
+
 function switchTab(tabId) {
     triggerLoadingAnimation(() => {
-        ['dashboard', 'deposit', 'withdraw', 'loans', 'reports', 'settings'].forEach(t => {
+        ['dashboard', 'deposit', 'withdraw', 'transfer', 'loans', 'reports', 'settings'].forEach(t => {
             const view = document.getElementById(`view-${t}`);
             if (view) view.classList.add('hidden');
             const sBtn = document.getElementById(`sidebar-${t}`);
@@ -616,7 +667,7 @@ function handleDeposit(e) {
         document.getElementById('depositForm').reset();
         await loadAllData();
         syncDataUX();
-        alert(currentLang === 'en' ? "Deposit successful!" : "Lacagta waa lagu shubay!");
+        showAppPopup('success', currentLang === 'en' ? "Deposit successful!" : "Lacagta waa lagu shubay!");
         resetSessionTimer();
     });
 }
@@ -633,7 +684,7 @@ function handleWithdraw(e) {
     if (isNaN(amount) || amount <= 0) return;
 
     if (accounts[accKey].currencies[currency] < amount) {
-        alert(currentLang === 'en' ? "Insufficient balance!" : "Hadhaagaagu kuguma filna!");
+        showAppPopup('warning', currentLang === 'en' ? "Insufficient balance!" : "Hadhaagaagu kuguma filna!");
         return;
     }
 
@@ -652,7 +703,7 @@ function handleWithdraw(e) {
         document.getElementById('withdrawForm').reset();
         await loadAllData();
         syncDataUX();
-        alert(currentLang === 'en' ? "Withdrawal successful!" : "Lacagta waad la baxday!");
+        showAppPopup('success', currentLang === 'en' ? "Withdrawal successful!" : "Lacagta waad la baxday!");
         resetSessionTimer();
     });
 }
@@ -672,9 +723,13 @@ function populateFormOptions() {
     const depositSelect = document.getElementById('depositAccount');
     const withdrawSelect = document.getElementById('withdrawAccount');
     const sourceSelect = document.getElementById('loanSource');
+    const transferFrom = document.getElementById('transferFrom');
+    const transferTo = document.getElementById('transferTo');
     if (depositSelect) depositSelect.innerHTML = '';
     if (withdrawSelect) withdrawSelect.innerHTML = '';
     if (sourceSelect) sourceSelect.innerHTML = '';
+    if (transferFrom) transferFrom.innerHTML = '';
+    if (transferTo) transferTo.innerHTML = '';
 
     Object.keys(accounts).forEach(key => {
         if (depositSelect) {
@@ -689,10 +744,19 @@ function populateFormOptions() {
             let opt3 = document.createElement('option'); opt3.value = key; opt3.text = accounts[key].label;
             sourceSelect.appendChild(opt3);
         }
+        if (transferFrom) {
+            let opt4 = document.createElement('option'); opt4.value = key; opt4.text = accounts[key].label;
+            transferFrom.appendChild(opt4);
+        }
+        if (transferTo) {
+            let opt5 = document.createElement('option'); opt5.value = key; opt5.text = accounts[key].label;
+            transferTo.appendChild(opt5);
+        }
     });
     updateDepositCurrencyOptions();
     updateWithdrawCurrencyOptions();
     updateLoanCurrencyOptions();
+    updateTransferCurrencyOptions();
     renderActiveLoansSelectors();
 }
 
@@ -720,6 +784,148 @@ function updateWithdrawCurrencyOptions() {
     }
 }
 
+function updateTransferCurrencyOptions() {
+    const fromSelect = document.getElementById('transferFrom');
+    const toSelect = document.getElementById('transferTo');
+    const currencySelect = document.getElementById('transferCurrency');
+    if (!fromSelect || !toSelect || !currencySelect) return;
+
+    const fromKey = fromSelect.value;
+    const previousTo = toSelect.value;
+    const fromAccount = accounts[fromKey];
+    const availableTargets = Object.keys(accounts).filter(key => key !== fromKey);
+
+    toSelect.innerHTML = '';
+    availableTargets.forEach(key => {
+        const option = document.createElement('option');
+        option.value = key;
+        option.textContent = accounts[key].label;
+        toSelect.appendChild(option);
+    });
+    if (availableTargets.includes(previousTo)) toSelect.value = previousTo;
+
+    const toAccount = accounts[toSelect.value];
+    const fromCurrencies = Object.keys(fromAccount?.currencies || {});
+    const sharedCurrencies = fromCurrencies.filter(cur =>
+        Object.prototype.hasOwnProperty.call(toAccount?.currencies || {}, cur)
+    );
+    const previousCurrency = currencySelect.value;
+    currencySelect.innerHTML = '';
+    sharedCurrencies.forEach(cur => {
+        const option = document.createElement('option');
+        option.value = cur;
+        option.textContent = cur;
+        currencySelect.appendChild(option);
+    });
+    if (sharedCurrencies.includes(previousCurrency)) currencySelect.value = previousCurrency;
+
+    const hint = document.getElementById('transferBalanceHint');
+    if (hint) {
+        const cur = currencySelect.value;
+        const balance = cur ? Number(fromAccount?.currencies?.[cur] || 0) : 0;
+        hint.textContent = cur
+            ? `${cur} available in ${fromAccount?.label || 'source'}: ${balance.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})}`
+            : (currentLang === 'en' ? 'These wallets have no matching currency.' : 'Wallet-yadani ma laha lacag isku mid ah.');
+    }
+}
+
+async function handleTransfer(e) {
+    e.preventDefault();
+    const fromKey = document.getElementById('transferFrom').value;
+    const toKey = document.getElementById('transferTo').value;
+    const currency = document.getElementById('transferCurrency').value;
+    const amount = Number(document.getElementById('transferAmount').value);
+    const note = document.getElementById('transferDescription').value.trim();
+
+    if (!fromKey || !toKey || fromKey === toKey || !currency || !Number.isFinite(amount) || amount <= 0) {
+        showAppPopup('error', currentLang === 'en' ? 'Please check the transfer details.' : 'Fadlan hubi xogta wareejinta.');
+        return;
+    }
+
+    const source = accounts[fromKey];
+    const destination = accounts[toKey];
+    if (!source || !destination ||
+        !Object.prototype.hasOwnProperty.call(source.currencies, currency) ||
+        !Object.prototype.hasOwnProperty.call(destination.currencies, currency)) {
+        showAppPopup('error', currentLang === 'en'
+            ? 'Transfers are allowed only between wallets that support the same currency.'
+            : 'Waxaa la isku wareejin karaa oo keliya wallet-yo taageera lacag isku mid ah.');
+        return;
+    }
+    if (Number(source.currencies[currency]) < amount) {
+        showAppPopup('warning', currentLang === 'en' ? 'Insufficient balance.' : 'Haraaga lacagtu kuma filna.');
+        return;
+    }
+    if (!currentUser) {
+        showAppPopup('error', 'Please log in again.');
+        return;
+    }
+
+    const oldSource = Number(source.currencies[currency]);
+    const oldDestination = Number(destination.currencies[currency]);
+    const newSourceCurrencies = { ...source.currencies, [currency]: oldSource - amount };
+    const newDestinationCurrencies = { ...destination.currencies, [currency]: oldDestination + amount };
+
+    const submit = document.querySelector('#transferForm button[type="submit"]');
+    if (submit) submit.disabled = true;
+    triggerLoadingAnimation(async () => {
+        let sourceUpdated = false;
+        let destinationUpdated = false;
+        try {
+            const sourceResult = await sb.from('fh_accounts')
+                .update({ currencies: newSourceCurrencies })
+                .eq('user_id', currentUser.id).eq('key', fromKey)
+                .select('key').maybeSingle();
+            if (sourceResult.error) throw sourceResult.error;
+            if (!sourceResult.data) throw new Error('Source wallet was not updated.');
+            sourceUpdated = true;
+
+            const destinationResult = await sb.from('fh_accounts')
+                .update({ currencies: newDestinationCurrencies })
+                .eq('user_id', currentUser.id).eq('key', toKey)
+                .select('key').maybeSingle();
+            if (destinationResult.error) throw destinationResult.error;
+            if (!destinationResult.data) throw new Error('Destination wallet was not updated.');
+            destinationUpdated = true;
+
+            const txResult = await sb.from('fh_transactions').insert({
+                user_id: currentUser.id,
+                date: new Date().toISOString(),
+                type: 'transfer',
+                account: `${source.label} → ${destination.label}`,
+                currency,
+                amount,
+                description: note || `Transfer from ${source.label} to ${destination.label}`
+            });
+            if (txResult.error) throw txResult.error;
+
+            document.getElementById('transferForm').reset();
+            await loadAllData();
+            syncDataUX();
+            showAppPopup('success', currentLang === 'en' ? 'Transfer completed successfully.' : 'Wareejinta lacagta si guul leh ayay u dhammaatay.');
+            resetSessionTimer();
+        } catch (error) {
+            // Compensate completed writes so a failed transfer does not leave one wallet changed.
+            if (destinationUpdated) {
+                await sb.from('fh_accounts').update({ currencies: destination.currencies })
+                    .eq('user_id', currentUser.id).eq('key', toKey);
+            }
+            if (sourceUpdated) {
+                await sb.from('fh_accounts').update({ currencies: source.currencies })
+                    .eq('user_id', currentUser.id).eq('key', fromKey);
+            }
+            console.error('Transfer failed:', error);
+            showAppPopup('error', currentLang === 'en'
+                ? 'Transfer could not be completed. No successful transfer was recorded.'
+                : 'Wareejintu ma dhammaan. Fadlan mar kale hubi.');
+            await loadAllData();
+            syncDataUX();
+        } finally {
+            if (submit) submit.disabled = false;
+        }
+    });
+}
+
 function updateLoanCurrencyOptions() {
     const sourceKey = document.getElementById('loanSource').value;
     const currencySelect = document.getElementById('loanCurrency');
@@ -740,7 +946,7 @@ function handleGiveLoan(e) {
     const amount = parseFloat(document.getElementById('loanAmount').value);
 
     if (accounts[source].currencies[currency] < amount) {
-        alert(currentLang === 'en' ? "Insufficient funds!" : "Hadhagaagu kuguma filna!");
+        showAppPopup('warning', currentLang === 'en' ? "Insufficient balance!" : "Hadhagaagu kuguma filna!");
         return;
     }
 
@@ -770,7 +976,7 @@ function handleGiveLoan(e) {
         document.getElementById('loanForm').reset();
         await loadAllData();
         syncDataUX();
-        alert(currentLang === 'en' ? "Loan successful!" : "Amaahdii waa la bixiyay!");
+        showAppPopup('success', currentLang === 'en' ? "Loan successful!" : "Amaahdii waa la bixiyay!");
         resetSessionTimer();
     });
 }
@@ -809,7 +1015,7 @@ function handleRepayLoan(e) {
         document.getElementById('repayForm').reset();
         await loadAllData();
         syncDataUX();
-        alert(currentLang === 'en' ? "Repayment successful!" : "Lacagtii waa lagu soo celiyay akoonka!");
+        showAppPopup('success', currentLang === 'en' ? "Repayment successful!" : "Lacagtii waa lagu soo celiyay akoonka!");
         resetSessionTimer();
     });
 }
@@ -924,7 +1130,8 @@ function renderReports() {
             deposit: { en: 'Deposit', so: 'Ku Shub', color: 'text-emerald-400' },
             withdraw: { en: 'Withdrawal', so: 'La Bax', color: 'text-red-400' },
             loan: { en: 'Loan', so: 'Amaah', color: 'text-yellow-400' },
-            repayment: { en: 'Repayment', so: 'Soo Celin', color: 'text-purple-400' }
+            repayment: { en: 'Repayment', so: 'Soo Celin', color: 'text-purple-400' },
+            transfer: { en: 'Transfer', so: 'Wareejin', color: 'text-emerald-400' }
         };
 
         const typeLabel = currentLang === 'en' ? typeLabels[t.type]?.en : typeLabels[t.type]?.so;
