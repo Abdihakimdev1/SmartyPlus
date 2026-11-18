@@ -1,4 +1,4 @@
-# Fincore Finance core – Updated UI
+# Maalx
 
 This version keeps the existing FinanceHub/Supabase functionality and updates only the requested UI behavior:
 
@@ -34,3 +34,11 @@ The app talks to the `finance_hub` schema (set in `script.js` via `db: { schema:
 - The transfer flow checks Supabase write responses and attempts compensating balance restoration if a later write fails.
 
 No database tables or columns are added by this update. Test transfers in a non-production account first. The existing Supabase project, schema, and client configuration are retained.
+
+
+## Maalx update — rename, login and settings
+
+- Renamed to **Maalx** with a new logo (`logo/`, `icon.png`).
+- Login redesigned: follows the dark/light theme, mobile + desktop layouts, Somali/English text, clearer error messages.
+- Settings rebuilt as a menu list (Profile information, Security, Language, Appearance, Report, Backup, Management, About app, Logout) with a sub-page for each, footer "Maalx v1.0.0.0".
+- Behaviour, Supabase config and database are unchanged. Save/password results now use the Success/Error popup.

@@ -45,7 +45,7 @@ async function handleLogin(e) {
 
     if (!username || !password) {
         errorEl.classList.remove('hidden');
-        errorEl.textContent = 'Please feild out this form!';
+        errorEl.textContent = currentLang === 'en' ? 'Please fill in all fields.' : 'Fadlan buuxi dhammaan meelaha.';
         return;
     }
 
@@ -58,7 +58,7 @@ async function handleLogin(e) {
 
     if (error || !data.session) {
         errorEl.classList.remove('hidden');
-        errorEl.textContent = 'Invalid Credentials!';
+        errorEl.textContent = currentLang === 'en' ? 'Invalid email or password.' : 'Email ama password khaldan.';
         return;
     }
 
@@ -371,6 +371,7 @@ function switchTab(tabId) {
         });
         const activeView = document.getElementById(`view-${tabId}`);
         if (activeView) activeView.classList.remove('hidden');
+        if (tabId === 'settings') closeSettingsPanel();
         const activeSidebar = document.getElementById(`sidebar-${tabId}`);
         if (activeSidebar) activeSidebar.className = "w-full flex items-center gap-3 px-4 py-3 rounded-lg bg-emerald-600 text-white font-medium text-left transition-all sidebar-btn active";
         const activeMobile = document.getElementById(`mobile-${tabId}`);
@@ -1184,6 +1185,15 @@ function initProfileAndSettings() {
     if (avatarCircle) avatarCircle.innerText = profile.name.charAt(0).toUpperCase();
     if (settingsName) settingsName.value = profile.name;
     if (settingsRole) settingsRole.value = profile.role;
+    const menuName = document.getElementById('settingsMenuName');
+    const menuRole = document.getElementById('settingsMenuRole');
+    const menuAvatar = document.getElementById('settingsMenuAvatar');
+    const previewAvatar = document.getElementById('settingsAvatarPreview');
+    if (menuName) menuName.textContent = profile.name;
+    if (menuRole) menuRole.textContent = profile.role || '';
+    const initial = (profile.name || '?').charAt(0).toUpperCase();
+    if (menuAvatar) menuAvatar.textContent = initial;
+    if (previewAvatar) previewAvatar.textContent = initial;
 
     loadStoredAvatar();
 
@@ -1262,6 +1272,21 @@ function handleAvatarUpload(event) {
     event.target.value = '';
 }
 
+function openSettingsPanel(id) {
+    const menu = document.getElementById('settingsMenu');
+    if (menu) menu.classList.add('hidden');
+    document.querySelectorAll('.set-panel').forEach(p => p.classList.add('hidden'));
+    const panel = document.getElementById(`sp-${id}`);
+    if (panel) panel.classList.remove('hidden');
+    window.scrollTo({ top: 0, behavior: 'auto' });
+}
+
+function closeSettingsPanel() {
+    document.querySelectorAll('.set-panel').forEach(p => p.classList.add('hidden'));
+    const menu = document.getElementById('settingsMenu');
+    if (menu) menu.classList.remove('hidden');
+}
+
 function saveProfile() {
     const settingsName = document.getElementById('settingsName');
     const settingsRole = document.getElementById('settingsRole');
@@ -1277,13 +1302,15 @@ function saveProfile() {
         if (newPass.length > 0) {
             const { error } = await sb.auth.updateUser({ password: newPass });
             if (!error) {
-                alert(currentLang === 'en' ? "Password successfully Updated!" : "Password-ka Waa La Cusboonaysiiyay!");
+                showAppPopup('success', currentLang === 'en' ? "Password successfully updated!" : "Password-ka waa la cusboonaysiiyay!");
+            } else {
+                showAppPopup('error', error.message || (currentLang === 'en' ? "Could not update the password." : "Password-ka lama cusboonaysiin karin."));
             }
             settingsNewPassword.value = '';
         }
 
         initProfileAndSettings();
-        alert(currentLang === 'en' ? "Saved successful!" : "Waa la kaydiyay si guul leh!");
+        if (!newPass.length) showAppPopup('success', currentLang === 'en' ? "Saved successfully!" : "Waa la kaydiyay si guul leh!");
         resetSessionTimer();
     })();
 }
@@ -1364,7 +1391,7 @@ function exportCSV() {
     });
     const blob = new Blob([lines.join('\n')], { type: 'text/csv;charset=utf-8;' });
     const stamp = new Date().toISOString().slice(0, 10);
-    triggerFileDownload(blob, `smartyplus-transactions-${exportRange}-${stamp}.csv`);
+    triggerFileDownload(blob, `maalx-transactions-${exportRange}-${stamp}.csv`);
 }
 
 function exportJSON() {
@@ -1377,7 +1404,7 @@ function exportJSON() {
     };
     const blob = new Blob([JSON.stringify(payload, null, 2)], { type: 'application/json' });
     const stamp = new Date().toISOString().slice(0, 10);
-    triggerFileDownload(blob, `smartyplus-backup-${stamp}.json`);
+    triggerFileDownload(blob, `maalx-backup-${stamp}.json`);
 }
 
 function handleImportJSON(event) {
@@ -1467,7 +1494,7 @@ function downloadPDF() {
         : (currentLang === 'en' ? "Transaction History (All)" : "Taariikhda Dhaqdhaqaaqa (Oo Dhan)");
 
     doc.setFontSize(16);
-    doc.text('SmartyPlus', 14, 16);
+    doc.text('Maalx', 14, 16);
     doc.setFontSize(11);
     doc.text(rangeLabel, 14, 24);
     doc.setFontSize(9);
@@ -1491,7 +1518,7 @@ function downloadPDF() {
     });
 
     const fileStamp = new Date().toISOString().slice(0, 10);
-    doc.save(`smartyplus-report-${exportRange}-${fileStamp}.pdf`);
+    doc.save(`maalx-report-${exportRange}-${fileStamp}.pdf`);
 }
 
 const UI_TRANSLATIONS = {
