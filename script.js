@@ -116,7 +116,7 @@ let accounts = {};
 let loans = [];
 let transactions = [];
 let profile = { name: "User", role: "System Administrator" };
-let currentLang = 'so';
+let currentLang = 'en';
 let currentTheme = 'dark';
 let isBalancesHidden = false;
 const hiddenWallets = new Set();
@@ -203,7 +203,7 @@ async function loadAllData() {
 
     if (profRes.data) {
         profile = { name: profRes.data.name, role: profRes.data.role, avatarUrl: profRes.data.avatar_url || null };
-        currentLang = profRes.data.lang || 'so';
+        currentLang = profRes.data.lang || 'en';
         currentTheme = profRes.data.theme || 'dark';
         isBalancesHidden = !!profRes.data.hide_balance;
     }
@@ -1287,30 +1287,84 @@ function closeSettingsPanel() {
     if (menu) menu.classList.remove('hidden');
 }
 
+async function verifyCurrentPassword(password) {
+    const email = currentUser && currentUser.email;
+    if (!email || !password) return false;
+    const { error } = await sb.auth.signInWithPassword({ email, password });
+    return !error;
+}
+
 function saveProfile() {
     const settingsName = document.getElementById('settingsName');
     const settingsRole = document.getElementById('settingsRole');
-    const settingsNewPassword = document.getElementById('settingsNewPassword');
+    const passEl = document.getElementById('settingsProfilePassword');
 
     (async () => {
-        profile.name = settingsName.value.trim() || profile.name;
-        profile.role = settingsRole.value.trim() || profile.role;
+        const newName = settingsName.value.trim() || profile.name;
+        const newRole = settingsRole.value.trim() || profile.role;
 
-        await saveProfileFields({ name: profile.name, role: profile.role });
-
-        const newPass = settingsNewPassword.value.trim();
-        if (newPass.length > 0) {
-            const { error } = await sb.auth.updateUser({ password: newPass });
-            if (!error) {
-                showAppPopup('success', currentLang === 'en' ? "Password successfully updated!" : "Password-ka waa la cusboonaysiiyay!");
-            } else {
-                showAppPopup('error', error.message || (currentLang === 'en' ? "Could not update the password." : "Password-ka lama cusboonaysiin karin."));
+        // Changing the name must be confirmed with the current password.
+        if (newName !== profile.name) {
+            const cur = passEl ? passEl.value : '';
+            if (!cur) {
+                showAppPopup('warning', currentLang === 'en' ? "Enter your current password to change your name." : "Geli password-ka hadda si aad magacaaga u bedesho.");
+                return;
             }
-            settingsNewPassword.value = '';
+            if (!await verifyCurrentPassword(cur)) {
+                showAppPopup('error', currentLang === 'en' ? "Current password is incorrect." : "Password-ka hadda waa khalad.");
+                return;
+            }
         }
 
+        profile.name = newName;
+        profile.role = newRole;
+        await saveProfileFields({ name: profile.name, role: profile.role });
+        if (passEl) passEl.value = '';
+
         initProfileAndSettings();
-        if (!newPass.length) showAppPopup('success', currentLang === 'en' ? "Saved successfully!" : "Waa la kaydiyay si guul leh!");
+        showAppPopup('success', currentLang === 'en' ? "Saved successfully!" : "Waa la kaydiyay si guul leh!");
+        resetSessionTimer();
+    })();
+}
+
+function updatePassword() {
+    const curEl = document.getElementById('settingsCurrentPassword');
+    const newEl = document.getElementById('settingsNewPassword');
+    const confEl = document.getElementById('settingsConfirmPassword');
+
+    (async () => {
+        const cur = curEl.value;
+        const next = newEl.value.trim();
+        const conf = confEl.value.trim();
+
+        if (!cur) {
+            showAppPopup('warning', currentLang === 'en' ? "Enter your current password." : "Geli password-ka hadda.");
+            return;
+        }
+        if (next.length < 6) {
+            showAppPopup('warning', currentLang === 'en' ? "New password must be at least 6 characters." : "Password-ka cusub waa inuu ahaadaa ugu yaraan 6 xaraf.");
+            return;
+        }
+        if (next !== conf) {
+            showAppPopup('error', currentLang === 'en' ? "New passwords do not match." : "Password-yada cusub isma raacaan.");
+            return;
+        }
+        if (next === cur) {
+            showAppPopup('warning', currentLang === 'en' ? "New password must be different from the current one." : "Password-ka cusub waa inuu ka duwanaadaa ka hadda jira.");
+            return;
+        }
+        if (!await verifyCurrentPassword(cur)) {
+            showAppPopup('error', currentLang === 'en' ? "Current password is incorrect." : "Password-ka hadda waa khalad.");
+            return;
+        }
+
+        const { error } = await sb.auth.updateUser({ password: next });
+        if (!error) {
+            curEl.value = ''; newEl.value = ''; confEl.value = '';
+            showAppPopup('success', currentLang === 'en' ? "Password successfully updated!" : "Password-ka waa la cusboonaysiiyay!");
+        } else {
+            showAppPopup('error', error.message || (currentLang === 'en' ? "Could not update the password." : "Password-ka lama cusboonaysiin karin."));
+        }
         resetSessionTimer();
     })();
 }
@@ -1391,7 +1445,7 @@ function exportCSV() {
     });
     const blob = new Blob([lines.join('\n')], { type: 'text/csv;charset=utf-8;' });
     const stamp = new Date().toISOString().slice(0, 10);
-    triggerFileDownload(blob, `maalx-transactions-${exportRange}-${stamp}.csv`);
+    triggerFileDownload(blob, `keepsave-transactions-${exportRange}-${stamp}.csv`);
 }
 
 function exportJSON() {
@@ -1404,7 +1458,7 @@ function exportJSON() {
     };
     const blob = new Blob([JSON.stringify(payload, null, 2)], { type: 'application/json' });
     const stamp = new Date().toISOString().slice(0, 10);
-    triggerFileDownload(blob, `maalx-backup-${stamp}.json`);
+    triggerFileDownload(blob, `keepsave-backup-${stamp}.json`);
 }
 
 function handleImportJSON(event) {
@@ -1494,7 +1548,7 @@ function downloadPDF() {
         : (currentLang === 'en' ? "Transaction History (All)" : "Taariikhda Dhaqdhaqaaqa (Oo Dhan)");
 
     doc.setFontSize(16);
-    doc.text('Maalx', 14, 16);
+    doc.text('KeepSave', 14, 16);
     doc.setFontSize(11);
     doc.text(rangeLabel, 14, 24);
     doc.setFontSize(9);
@@ -1518,7 +1572,7 @@ function downloadPDF() {
     });
 
     const fileStamp = new Date().toISOString().slice(0, 10);
-    doc.save(`maalx-report-${exportRange}-${fileStamp}.pdf`);
+    doc.save(`keepsave-report-${exportRange}-${fileStamp}.pdf`);
 }
 
 const UI_TRANSLATIONS = {

@@ -1,10 +1,10 @@
 <!DOCTYPE html >
-<html lang="so">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
     <meta name="theme-color" content="#0a1220">
-    <title>Maalx</title>
+    <title>KeepSave</title>
     <link rel="icon" type="image/svg+xml" href="logo/logo-icon.svg">
     <link rel="icon" type="image/png" sizes="32x32" href="logo/logo-icon-32.png">
     <link rel="apple-touch-icon" href="logo/logo-icon-192.png">
@@ -27,38 +27,39 @@
 
     <!-- ==================== LOGIN PAGE ==================== -->
     <div id="loginPage" class="auth">
+        <div class="auth-shell">
 
-        <!-- Brand side -->
-        <div class="auth-brand">
-            <div class="auth-logo">
-                <img class="brand-mark" src="logo/logo-icon.svg" alt="Maalx">
-                <span>Maalx</span>
+            <!-- Brand side (desktop) -->
+            <div class="auth-aside" aria-hidden="true">
+                <div class="auth-aside-brand">
+                    <img class="brand-mark" src="logo/logo-icon.svg" alt="">
+                    <span>Keep<b>Save</b></span>
+                </div>
+                <div class="auth-aside-body">
+                    <h2 class="auth-tagline" data-lang-en="Your money, clear and in your hands." data-lang-so="Lacagtaada, si cad oo gacantaada ah.">Your money, clear and in your hands.</h2>
+                    <ul class="auth-points">
+                        <li><i class="fa-solid fa-wallet"></i><span data-lang-en="All your wallets in one place" data-lang-so="Wallet-kaaga oo dhan hal meel">All your wallets in one place</span></li>
+                        <li><i class="fa-solid fa-hand-holding-dollar"></i><span data-lang-en="Track loans and repayments" data-lang-so="La soco amaahda iyo soo celinta">Track loans and repayments</span></li>
+                        <li><i class="fa-solid fa-file-pdf"></i><span data-lang-en="Clear reports, ready to export" data-lang-so="Warbixino cad oo la soo dejin karo">Clear reports, ready to export</span></li>
+                    </ul>
+                </div>
+                <p class="auth-copy">KeepSave &middot; Finance &amp; Business</p>
             </div>
 
-            <div class="auth-hero">
-                <p class="auth-tagline" data-lang-en="Your money, clear and in your hands." data-lang-so="Lacagtaada, si cad oo gacantaada ah.">Lacagtaada, si cad oo gacantaada ah.</p>
-
-                <ul class="auth-points">
-                    <li><i class="fa-solid fa-wallet"></i><span data-lang-en="All your wallets in one place" data-lang-so="Wallet-kaaga oo dhan hal meel">Wallet-kaaga oo dhan hal meel</span></li>
-                    <li><i class="fa-solid fa-hand-holding-dollar"></i><span data-lang-en="Track loans and repayments" data-lang-so="La soco amaahda iyo soo celinta">La soco amaahda iyo soo celinta</span></li>
-                    <li><i class="fa-solid fa-file-pdf"></i><span data-lang-en="Clear reports, ready to export" data-lang-so="Warbixino cad oo la soo dejin karo">Warbixino cad oo la soo dejin karo</span></li>
-                </ul>
-            </div>
-
-            <p class="auth-copy">Maalx &middot; Finance &amp; Business</p>
-        </div>
-
-        <!-- Form side -->
-        <div class="auth-panel">
+            <!-- Form side -->
             <div class="auth-card">
+                <div class="auth-logo">
+                    <img class="brand-mark" src="logo/logo-icon.svg" alt="KeepSave">
+                    <span>Keep<b>Save</b></span>
+                </div>
 
-                <h1 class="auth-title" data-lang-en="Welcome back" data-lang-so="Soo dhawoow">Soo dhawoow</h1>
-                <p class="auth-sub" data-lang-en="Log in to access and manage your accounts." data-lang-so="Gal si aad u maamusho akoonnadaada.">Gal si aad u maamusho akoonnadaada.</p>
+                <h1 class="auth-title" data-lang-en="Welcome back" data-lang-so="Soo dhawoow">Welcome back</h1>
+                <p class="auth-sub" data-lang-en="Log in to access and manage your accounts." data-lang-so="Gal si aad u maamusho akoonnadaada.">Log in to access and manage your accounts.</p>
 
                 <form id="loginForm" onsubmit="handleLogin(event)" class="auth-form">
 
                     <div class="auth-field">
-                        <label for="loginUser" data-lang-en="Email address" data-lang-so="Email-ka">Email-ka</label>
+                        <label for="loginUser" data-lang-en="Email address" data-lang-so="Email-ka">Email address</label>
                         <div class="field-wrap">
                             <i class="fa-solid fa-envelope lead"></i>
                             <input type="email" id="loginUser" required class="input-field" placeholder="name@email.com" autocomplete="username" autocapitalize="none" spellcheck="false">
@@ -66,7 +67,7 @@
                     </div>
 
                     <div class="auth-field">
-                        <label for="loginPass" data-lang-en="Password" data-lang-so="Password-ka">Password-ka</label>
+                        <label for="loginPass" data-lang-en="Password" data-lang-so="Password-ka">Password</label>
                         <div class="field-wrap">
                             <i class="fa-solid fa-lock lead"></i>
                             <input type="password" id="loginPass" placeholder="&#8226;&#8226;&#8226;&#8226;&#8226;&#8226;&#8226;&#8226;" required class="input-field has-trail" autocomplete="current-password">
@@ -80,14 +81,14 @@
 
                     <button type="submit" class="btn-primary auth-submit">
                         <i class="fa-solid fa-right-to-bracket"></i>
-                        <span data-lang-en="Login" data-lang-so="Gal">Gal</span>
+                        <span data-lang-en="Login" data-lang-so="Gal">Login</span>
                     </button>
 
                 </form>
 
                 <div class="auth-foot">
-                    <p><i class="fa-solid fa-shield-halved"></i><span data-lang-en="Secure Maalx System" data-lang-so="Nidaam Maalx oo ammaan ah">Nidaam Maalx oo ammaan ah</span></p>
-                    <p data-lang-en="Your data is protected and encrypted." data-lang-so="Xogtaada waa la ilaaliyaa waana la sir-qoodaa.">Xogtaada waa la ilaaliyaa waana la sir-qoodaa.</p>
+                    <p><i class="fa-solid fa-shield-halved"></i><span data-lang-en="Secure KeepSave System" data-lang-so="Nidaam KeepSave oo ammaan ah">Secure KeepSave System</span></p>
+                    <p data-lang-en="Your data is protected and encrypted." data-lang-so="Xogtaada waa la ilaaliyaa waana la sir-qoodaa.">Your data is protected and encrypted.</p>
                 </div>
             </div>
         </div>
@@ -127,13 +128,9 @@
                 </button>
                 <div id="pinModalIcon" class="pin-modal-icon"></div>
                 <h3 id="pinModalTitle" class="pin-modal-title">Enter your pin</h3>
-                <p class="pin-modal-subtitle" data-lang-en="Enter your PIN to open this wallet" data-lang-so="Geli PIN-ka si aad u furto wallet-kan">
-                    Enter PIN to access this account
-                </p>
+                <p class="pin-modal-subtitle" data-lang-en="Enter your PIN to open this wallet" data-lang-so="Geli PIN-ka si aad u furto wallet-kan">Enter your PIN to open this wallet</p>
                 <div id="pinDots" class="pin-dots"></div>
-                <p id="pinError" class="pin-error hidden" data-lang-en="Incorrect PIN. Try again." data-lang-so="PIN khalad ah. Isku day mar kale.">
-                    Invalid pin!
-                </p>
+                <p id="pinError" class="pin-error hidden" data-lang-en="Incorrect PIN. Try again." data-lang-so="PIN khalad ah. Isku day mar kale.">Incorrect PIN. Try again.</p>
                 <div class="pin-keypad">
                     <button type="button" onclick="pinPress('1')">1</button>
                     <button type="button" onclick="pinPress('2')">2</button>
@@ -170,17 +167,15 @@
                     </button>
                 </div>
                 <div id="walletDetailRows" class="wallet-detail-rows"></div>
-                <p id="walletDetailDemoNote" class="wallet-detail-demo-note hidden" data-lang-en="This is a demo preview with sample numbers — no real account is connected." data-lang-so="Kani waa muuqaal Demo ah oo leh lambaro tijaabo ah — akoon dhab ah lama xidhiidhin.">
-                    Kani waa muuqaal Demo ah oo leh lambaro tijaabo ah — akoon dhab ah lama xidhiidhin.
-                </p>
+                <p id="walletDetailDemoNote" class="wallet-detail-demo-note hidden" data-lang-en="This is a demo preview with sample numbers — no real account is connected." data-lang-so="Kani waa muuqaal Demo ah oo leh lambaro tijaabo ah — akoon dhab ah lama xidhiidhin.">This is a demo preview with sample numbers — no real account is connected.</p>
                 <div id="walletDetailActions" class="wallet-detail-actions">
                     <button type="button" class="btn-primary w-full" onclick="goToWalletAction('deposit')">
                         <i class="fa-solid fa-arrow-down"></i>
-                        <span data-lang-en="Deposit" data-lang-so="Ku shub">Ku shub</span>
+                        <span data-lang-en="Deposit" data-lang-so="Ku shub">Deposit</span>
                     </button>
                     <button type="button" class="btn-outline w-full" onclick="goToWalletAction('withdraw')">
                         <i class="fa-solid fa-arrow-up"></i>
-                        <span data-lang-en="Withdraw" data-lang-so="Ka bax">Ka bax</span>
+                        <span data-lang-en="Withdraw" data-lang-so="Ka bax">Withdraw</span>
                     </button>
                 </div>
             </div>
@@ -192,8 +187,8 @@
             <aside class="hidden md:flex w-64 flex-col justify-between p-6" style="background: var(--surface-strong); backdrop-filter: blur(10px); border-right: 1px solid var(--border-color);">
                 <div>
                     <div class="flex items-center gap-3 mb-8">
-                        <img class="brand-mark" src="logo/logo-icon.svg" alt="Maalx">
-                        <span class="text-xl font-bold tracking-wider" style="color: var(--primary);">Maalx</span>
+                        <img class="brand-mark" src="logo/logo-icon.svg" alt="KeepSave">
+                        <span class="text-xl font-bold tracking-wider" style="color: var(--primary);">KeepSave</span>
                     </div>
                     <nav class="space-y-1.5">
                         <button onclick="switchTab('dashboard')" class="sidebar-btn active w-full flex items-center gap-3 px-4 py-3 rounded-xl text-slate-400 hover:text-white font-medium text-left" id="sidebar-dashboard">
@@ -202,11 +197,11 @@
                         </button>
                         <button onclick="switchTab('deposit')" class="sidebar-btn w-full flex items-center gap-3 px-4 py-3 rounded-xl text-slate-400 hover:text-white font-medium text-left" id="sidebar-deposit">
                             <i class="fa-solid fa-arrow-down" style="color: var(--primary);"></i>
-                            <span data-lang-en="Deposit Money" data-lang-so="Ku Shubo Lacag">Ku shub lacag</span>
+                            <span data-lang-en="Deposit Money" data-lang-so="Ku Shubo Lacag">Deposit Money</span>
                         </button>
                         <button onclick="switchTab('withdraw')" class="sidebar-btn w-full flex items-center gap-3 px-4 py-3 rounded-xl text-slate-400 hover:text-white font-medium text-left" id="sidebar-withdraw">
                             <i class="fa-solid fa-arrow-up" style="color: var(--primary);"></i>
-                            <span data-lang-en="Withdraw Money" data-lang-so="Labax Lacag">Labax lacag</span>
+                            <span data-lang-en="Withdraw Money" data-lang-so="Labax Lacag">Withdraw Money</span>
                         </button>
                         <button onclick="switchTab('transfer')" class="sidebar-btn w-full flex items-center gap-3 px-4 py-3 rounded-xl text-slate-400 hover:text-white font-medium text-left" id="sidebar-transfer">
                             <i class="fa-solid fa-right-left" style="color: var(--primary);"></i>
@@ -214,15 +209,15 @@
                         </button>
                         <button onclick="switchTab('loans')" class="sidebar-btn w-full flex items-center gap-3 px-4 py-3 rounded-xl text-slate-400 hover:text-white font-medium text-left" id="sidebar-loans">
                             <i class="fa-solid fa-hand-holding-dollar" style="color: var(--primary);"></i>
-                            <span data-lang-en="Loan Management" data-lang-so="Maaraynta Amaahda">Maaraynta Amaahda</span>
+                            <span data-lang-en="Loan Management" data-lang-so="Maaraynta Amaahda">Loan Management</span>
                         </button>
                         <button onclick="switchTab('reports')" class="sidebar-btn w-full flex items-center gap-3 px-4 py-3 rounded-xl text-slate-400 hover:text-white font-medium text-left" id="sidebar-reports">
                             <i class="fa-solid fa-chart-simple" style="color: var(--primary);"></i>
-                            <span data-lang-en="Reports" data-lang-so="Warbixinno">Warbixinno</span>
+                            <span data-lang-en="Reports" data-lang-so="Warbixinno">Reports</span>
                         </button>
                         <button onclick="switchTab('settings')" class="sidebar-btn w-full flex items-center gap-3 px-4 py-3 rounded-xl text-slate-400 hover:text-white font-medium text-left" id="sidebar-settings">
                             <i class="fa-solid fa-gear" style="color: var(--primary);"></i>
-                            <span data-lang-en="Settings & Profile" data-lang-so="Hagaajinta iyo Profile">Habaynta</span>
+                            <span data-lang-en="Settings & Profile" data-lang-so="Hagaajinta iyo Profile">Settings & Profile</span>
                         </button>
                     </nav>
                 </div>
@@ -291,7 +286,7 @@
                         <div class="bt-top">
                             <div class="bt-title-wrap">
                                 <span class="bt-wallet-icon"><i class="fa-solid fa-wallet"></i></span>
-                                <span class="bt-title" data-lang-en="Available Balance" data-lang-so="Hadhaaga Jira">Hadhaaga Jira</span>
+                                <span class="bt-title" data-lang-en="Available Balance" data-lang-so="Hadhaaga Jira">Available Balance</span>
                             </div>
                             <button type="button" onclick="toggleVisibility()" id="hideBtnTotal" class="balance-total-eye"
                                 aria-label="Muuji ama qari hadhaaga">
@@ -303,7 +298,7 @@
                             <label class="bt-currency">
                                 <span class="bt-currency-icon"><i class="fa-solid fa-coins"></i></span>
                                 <span class="bt-currency-text">
-                                    <small data-lang-en="Currency" data-lang-so="Lacagta">Lacagta</small>
+                                    <small data-lang-en="Currency" data-lang-so="Lacagta">Currency</small>
                                     <select id="balanceCurrency" onchange="setBalanceCurrency(this.value)" aria-label="Currency">
                                         <option value="USD">USD</option>
                                         <option value="SLSH">SLSH</option>
@@ -332,34 +327,34 @@
                             <div>
                                 <label class="block text-xs font-semibold uppercase text-slate-400 mb-2 flex items-center gap-2">
                                     <i class="fa-solid fa-building-columns" style="color: var(--primary);"></i>
-                                    <span data-lang-en="Select Account" data-lang-so="Dooro Account-ka">Select accounts</span>
+                                    <span data-lang-en="Select Account" data-lang-so="Dooro Account-ka">Select Account</span>
                                 </label>
                                 <select id="depositAccount" onchange="updateDepositCurrencyOptions()" class="input-field"></select>
                             </div>
                             <div>
                                 <label class="block text-xs font-semibold uppercase text-slate-400 mb-2 flex items-center gap-2">
                                     <i class="fa-solid fa-coins" style="color: var(--primary);"></i>
-                                    <span data-lang-en="Currency" data-lang-so="Nooca Lacagta">Currency type</span>
+                                    <span data-lang-en="Currency" data-lang-so="Nooca Lacagta">Currency</span>
                                 </label>
                                 <select id="depositCurrency" class="input-field"></select>
                             </div>
                             <div>
                                 <label class="block text-xs font-semibold uppercase text-slate-400 mb-2 flex items-center gap-2">
                                     <i class="fa-solid fa-circle-dollar" style="color: var(--primary);"></i>
-                                    <span data-lang-en="Amount to Deposit" data-lang-so="Cadadka Lacagta">Lacagta</span>
+                                    <span data-lang-en="Amount to Deposit" data-lang-so="Cadadka Lacagta">Amount to Deposit</span>
                                 </label>
                                 <input type="number" step="any" id="depositAmount" required class="input-field" placeholder="0.00">
                             </div>
                             <div>
                                 <label class="block text-xs font-semibold uppercase text-slate-400 mb-2 flex items-center gap-2">
                                     <i class="fa-solid fa-file-lines" style="color: var(--primary);"></i>
-                                    <span data-lang-en="Description" data-lang-so="Faahfaahin">Faahfaahin</span>
+                                    <span data-lang-en="Description" data-lang-so="Faahfaahin">Description</span>
                                 </label>
                                 <input type="text" id="depositDescription" class="input-field" maxlength="200" placeholder="Tusaale: Mushahar, lacag la soo celiyey..." data-placeholder-en="e.g. Salary, money received..." data-placeholder-so="Tusaale: Mushahar, lacag la soo celiyey...">
                             </div>
                             <button type="submit" class="btn-primary w-full">
                                 <i class="fa-solid fa-plus-circle"></i>
-                                <span data-lang-en="Add to Balance" data-lang-so="Ku Shub Balance-ka">Deposit to Balance</span>
+                                <span data-lang-en="Add to Balance" data-lang-so="Ku Shub Balance-ka">Add to Balance</span>
                             </button>
                         </form>
                     </div>
@@ -376,34 +371,34 @@
                             <div>
                                 <label class="block text-xs font-semibold uppercase text-slate-400 mb-2 flex items-center gap-2">
                                     <i class="fa-solid fa-building-columns" style="color: var(--primary);"></i>
-                                    <span data-lang-en="Select Account" data-lang-so="Dooro Akoonka">Dooro Akoonka</span>
+                                    <span data-lang-en="Select Account" data-lang-so="Dooro Akoonka">Select Account</span>
                                 </label>
                                 <select id="withdrawAccount" onchange="updateWithdrawCurrencyOptions()" class="input-field"></select>
                             </div>
                             <div>
                                 <label class="block text-xs font-semibold uppercase text-slate-400 mb-2 flex items-center gap-2">
                                     <i class="fa-solid fa-coins" style="color: var(--primary);"></i>
-                                    <span data-lang-en="Currency" data-lang-so="Nooca Lacagta">Nooca Lacagta</span>
+                                    <span data-lang-en="Currency" data-lang-so="Nooca Lacagta">Currency</span>
                                 </label>
                                 <select id="withdrawCurrency" class="input-field"></select>
                             </div>
                             <div>
                                 <label class="block text-xs font-semibold uppercase text-slate-400 mb-2 flex items-center gap-2">
                                     <i class="fa-solid fa-circle-dollar" style="color: var(--primary);"></i>
-                                    <span data-lang-en="Amount to Withdraw" data-lang-so="Cadadka Lacagta">Cadadka Lacagta</span>
+                                    <span data-lang-en="Amount to Withdraw" data-lang-so="Cadadka Lacagta">Amount to Withdraw</span>
                                 </label>
                                 <input type="number" step="any" id="withdrawAmount" required class="input-field" placeholder="0.00">
                             </div>
                             <div>
                                 <label class="block text-xs font-semibold uppercase text-slate-400 mb-2 flex items-center gap-2">
                                     <i class="fa-solid fa-file-lines" style="color: var(--primary);"></i>
-                                    <span data-lang-en="Description" data-lang-so="Faahfaahin">Faahfaahin</span>
+                                    <span data-lang-en="Description" data-lang-so="Faahfaahin">Description</span>
                                 </label>
                                 <input type="text" id="withdrawDescription" class="input-field" maxlength="200" placeholder="Tusaale: Iibsasho, lacag la bixiyey..." data-placeholder-en="e.g. Purchase, money paid out..." data-placeholder-so="Tusaale: Iibsasho, lacag la bixiyey...">
                             </div>
                             <button type="submit" class="btn-primary w-full">
                                 <i class="fa-solid fa-minus-circle"></i>
-                                <span data-lang-en="Withdraw" data-lang-so="Ka Bax">Ka bax</span>
+                                <span data-lang-en="Withdraw" data-lang-so="Ka Bax">Withdraw</span>
                             </button>
                         </form>
                     </div>
@@ -460,13 +455,13 @@
                         <div class="card">
                             <h3 class="text-md font-semibold mb-4 flex items-center gap-2" style="color: var(--primary);">
                                 <i class="fa-solid fa-hand-holding-dollar"></i>
-                                <span data-lang-en="Issue New Loan" data-lang-so="Bixi Amaah Cusub">Bixi Amaah Cusub</span>
+                                <span data-lang-en="Issue New Loan" data-lang-so="Bixi Amaah Cusub">Issue New Loan</span>
                             </h3>
                             <form id="loanForm" onsubmit="handleGiveLoan(event)" class="space-y-5 flex-1 flex flex-col">
                                 <div>
                                     <label class="block text-xs font-semibold uppercase text-slate-400 mb-2 flex items-center gap-2">
                                         <i class="fa-solid fa-user" style="color: var(--primary);"></i>
-                                        <span data-lang-en="Borrower Name" data-lang-so="Magaca Qofka Qaadanaya">Magaca Qofka Qaadanaya</span>
+                                        <span data-lang-en="Borrower Name" data-lang-so="Magaca Qofka Qaadanaya">Borrower Name</span>
                                     </label>
                                     <input type="text" id="loanDebtor" required class="input-field">
                                 </div>
@@ -474,14 +469,14 @@
                                     <div>
                                         <label class="block text-xs font-semibold uppercase text-slate-400 mb-2 flex items-center gap-2">
                                             <i class="fa-solid fa-building-columns" style="color: var(--primary);"></i>
-                                            <span data-lang-en="Source Account" data-lang-so="Account-ka laga jarayo">Akoonka</span>
+                                            <span data-lang-en="Source Account" data-lang-so="Account-ka laga jarayo">Source Account</span>
                                         </label>
                                         <select id="loanSource" onchange="updateLoanCurrencyOptions()" class="input-field"></select>
                                     </div>
                                     <div>
                                         <label class="block text-xs font-semibold uppercase text-slate-400 mb-2 flex items-center gap-2">
                                             <i class="fa-solid fa-coins" style="color: var(--primary);"></i>
-                                            <span data-lang-en="Currency" data-lang-so="Nooca lacagta">Lacagta</span>
+                                            <span data-lang-en="Currency" data-lang-so="Nooca lacagta">Currency</span>
                                         </label>
                                         <select id="loanCurrency" class="input-field"></select>
                                     </div>
@@ -489,39 +484,39 @@
                                 <div>
                                     <label class="block text-xs font-semibold uppercase text-slate-400 mb-2 flex items-center gap-2">
                                         <i class="fa-solid fa-circle-dollar" style="color: var(--primary);"></i>
-                                        <span data-lang-en="Amount" data-lang-so="Cadadka Lacagta">Cadadka Lacagta</span>
+                                        <span data-lang-en="Amount" data-lang-so="Cadadka Lacagta">Amount</span>
                                     </label>
                                     <input type="number" step="any" id="loanAmount" required class="input-field" placeholder="0.00">
                                 </div>
                                 <button type="submit" class="btn-primary w-full mt-auto">
                                     <i class="fa-solid fa-hand-holding-heart"></i>
-                                    <span data-lang-en="Process Loan" data-lang-so="Bixi Amaahda">Bixi Amaahda</span>
+                                    <span data-lang-en="Process Loan" data-lang-so="Bixi Amaahda">Process Loan</span>
                                 </button>
                             </form>
                         </div>
                         <div class="card">
                             <h3 class="text-md font-semibold mb-4 flex items-center gap-2" style="color: var(--primary);">
                                 <i class="fa-solid fa-arrow-rotate-left"></i>
-                                <span data-lang-en="Repay Active Loan" data-lang-so="Soo Celi Amaahda">Soo Celi Amaahda</span>
+                                <span data-lang-en="Repay Active Loan" data-lang-so="Soo Celi Amaahda">Repay Active Loan</span>
                             </h3>
                             <form id="repayForm" onsubmit="handleRepayLoan(event)" class="space-y-5 flex-1 flex flex-col">
                                 <div>
                                     <label class="block text-xs font-semibold uppercase text-slate-400 mb-2 flex items-center gap-2">
                                         <i class="fa-solid fa-list-check" style="color: var(--primary);"></i>
-                                        <span data-lang-en="Select Active Loan" data-lang-so="Dooro Amaahda Tagan">Dooro Amaahda</span>
+                                        <span data-lang-en="Select Active Loan" data-lang-so="Dooro Amaahda Tagan">Select Active Loan</span>
                                     </label>
                                     <select id="repayLoanSelect" required class="input-field"></select>
                                 </div>
                                 <div>
                                     <label class="block text-xs font-semibold uppercase text-slate-400 mb-2 flex items-center gap-2">
                                         <i class="fa-solid fa-circle-dollar" style="color: var(--primary);"></i>
-                                        <span data-lang-en="Repayment Amount" data-lang-so="Qadarka Lagu Soo Celiyay">Qadarka lagusoo Celinta</span>
+                                        <span data-lang-en="Repayment Amount" data-lang-so="Qadarka Lagu Soo Celiyay">Repayment Amount</span>
                                     </label>
                                     <input type="number" step="any" id="repayAmount" required class="input-field" placeholder="0.00">
                                 </div>
                                 <button type="submit" class="btn-primary w-full mt-auto">
                                     <i class="fa-solid fa-check-circle"></i>
-                                    <span data-lang-en="Submit Repayment" data-lang-so="Gudbi soo celinta">Gudbi soo celinta</span>
+                                    <span data-lang-en="Submit Repayment" data-lang-so="Gudbi soo celinta">Submit Repayment</span>
                                 </button>
                             </form>
                         </div>
@@ -529,7 +524,7 @@
                     <div class="card" style="min-height: auto; overflow: hidden;">
                         <h3 class="text-md font-semibold mb-4 flex items-center gap-2" style="color: var(--primary);">
                             <i class="fa-solid fa-book"></i>
-                            <span data-lang-en="Active Loans Ledger" data-lang-so="Diiwaanka Amaahda Tagan">Diiwaanka Amaahda Tagan</span>
+                            <span data-lang-en="Active Loans Ledger" data-lang-so="Diiwaanka Amaahda Tagan">Active Loans Ledger</span>
                         </h3>
                         <div class="table-container">
                             <table>
@@ -561,7 +556,7 @@
                             <div class="flex items-center justify-between">
                                 <span class="text-sm text-slate-400 flex items-center gap-2">
                                     <i class="fa-solid fa-arrow-down" style="color: var(--primary);"></i>
-                                    <span data-lang-en="Total Deposits" data-lang-so="Kushubis">Ku Shubashada</span>
+                                    <span data-lang-en="Total Deposits" data-lang-so="Kushubis">Total Deposits</span>
                                 </span>
                                 <span class="text-2xl font-bold" style="color: var(--primary);" id="totalDeposits">0</span>
                             </div>
@@ -570,7 +565,7 @@
                             <div class="flex items-center justify-between">
                                 <span class="text-sm text-slate-400 flex items-center gap-2">
                                     <i class="fa-solid fa-arrow-up" style="color: var(--primary);"></i>
-                                    <span data-lang-en="Total Withdrawals" data-lang-so="Lacag labax">Kala Bax lacag</span>
+                                    <span data-lang-en="Total Withdrawals" data-lang-so="Lacag labax">Total Withdrawals</span>
                                 </span>
                                 <span class="text-2xl font-bold" style="color: var(--primary);" id="totalWithdrawals">0</span>
                             </div>
@@ -579,7 +574,7 @@
                             <div class="flex items-center justify-between">
                                 <span class="text-sm text-slate-400 flex items-center gap-2">
                                     <i class="fa-solid fa-hand-holding-dollar" style="color: var(--primary);"></i>
-                                    <span data-lang-en="Total Loans Given" data-lang-so="Wadarta Amaahda">Wadarta Amaahda</span>
+                                    <span data-lang-en="Total Loans Given" data-lang-so="Wadarta Amaahda">Total Loans Given</span>
                                 </span>
                                 <span class="text-2xl font-bold" style="color: var(--primary);" id="totalLoans">0</span>
                             </div>
@@ -591,35 +586,35 @@
                             <div class="flex-1 min-w-[150px]">
                                 <label class="block text-xs font-semibold uppercase text-slate-400 mb-2 flex items-center gap-2">
                                     <i class="fa-solid fa-filter" style="color: var(--primary);"></i>
-                                    <span data-lang-en="Filter by Type" data-lang-so="Shaandheey nooca">Shaandheey</span>
+                                    <span data-lang-en="Filter by Type" data-lang-so="Shaandheey nooca">Filter by Type</span>
                                 </label>
                                 <select id="reportFilter" onchange="renderReports()" class="input-field">
-                                    <option value="all" data-lang-en="All Transactions" data-lang-so="Dhammaan">Dhammaan</option>
-                                    <option value="deposit" data-lang-en="Deposits" data-lang-so="Ku Shubo">Ku Shubo</option>
-                                    <option value="withdraw" data-lang-en="Withdrawals" data-lang-so="Ka Bax">Ka Bax</option>
-                                    <option value="loan" data-lang-en="Loans" data-lang-so="Amaah">Amaah</option>
-                                    <option value="repayment" data-lang-en="Repayments" data-lang-so="Soo Celin">Soo Celin</option>
-                                    <option value="transfer" data-lang-en="Transfers" data-lang-so="Wareejin">Wareejin</option>
+                                    <option value="all" data-lang-en="All Transactions" data-lang-so="Dhammaan">All Transactions</option>
+                                    <option value="deposit" data-lang-en="Deposits" data-lang-so="Ku Shubo">Deposits</option>
+                                    <option value="withdraw" data-lang-en="Withdrawals" data-lang-so="Ka Bax">Withdrawals</option>
+                                    <option value="loan" data-lang-en="Loans" data-lang-so="Amaah">Loans</option>
+                                    <option value="repayment" data-lang-en="Repayments" data-lang-so="Soo Celin">Repayments</option>
+                                    <option value="transfer" data-lang-en="Transfers" data-lang-so="Wareejin">Transfers</option>
                                 </select>
                             </div>
                             <div class="flex-1 min-w-[150px]">
                                 <label class="block text-xs font-semibold uppercase text-slate-400 mb-2 flex items-center gap-2">
                                     <i class="fa-solid fa-calendar-day" style="color: var(--primary);"></i>
-                                    <span data-lang-en="Date Range" data-lang-so="Muddada">Muddada</span>
+                                    <span data-lang-en="Date Range" data-lang-so="Muddada">Date Range</span>
                                 </label>
                                 <input type="date" id="reportDateFrom" class="input-field">
                             </div>
                             <div class="flex-1 min-w-[150px]">
                                 <label class="block text-xs font-semibold uppercase text-slate-400 mb-2 flex items-center gap-2">
                                     <i class="fa-solid fa-calendar-day" style="color: var(--primary);"></i>
-                                    <span data-lang-en="To" data-lang-so="Ilaa">Ilaa</span>
+                                    <span data-lang-en="To" data-lang-so="Ilaa">To</span>
                                 </label>
                                 <input type="date" id="reportDateTo" class="input-field">
                             </div>
                             <div class="flex gap-2 items-end">
                                 <button onclick="renderReports()" class="btn-primary">
                                     <i class="fa-solid fa-magnifying-glass"></i>
-                                    <span data-lang-en="Apply Filter" data-lang-so="Kudabaq">Kudabaq</span>
+                                    <span data-lang-en="Apply Filter" data-lang-so="Kudabaq">Apply Filter</span>
                                 </button>
                                 <button onclick="clearReportFilters()" class="btn-outline">
                                     <i class="fa-solid fa-rotate-right"></i>
@@ -633,7 +628,7 @@
                         <div class="flex justify-between items-center mb-4">
                             <h3 class="text-md font-semibold flex items-center gap-2" style="color: var(--primary);">
                                 <i class="fa-solid fa-clock-rotate-left"></i>
-                                <span data-lang-en="Transaction History" data-lang-so="Taariikhda Dhaqdhaqaaqa">Taariikhda Dhaqdhaqaaqa</span>
+                                <span data-lang-en="Transaction History" data-lang-so="Taariikhda Dhaqdhaqaaqa">Transaction History</span>
                             </h3>
                             <span class="text-xs text-slate-400 px-3 py-1.5 rounded-full" style="background: var(--primary-bg);" id="transactionCount">0 transactions</span>
                         </div>
@@ -642,12 +637,12 @@
                                 <thead>
                                     <tr>
                                         <th>#</th>
-                                        <th data-lang-en="Date" data-lang-so="Taariikh">Taariikh</th>
-                                        <th data-lang-en="Type" data-lang-so="Nooca">Nooca</th>
-                                        <th data-lang-en="Account" data-lang-so="Xisaab">Xisaab</th>
-                                        <th data-lang-en="Currency" data-lang-so="Lacagta">Lacagta</th>
-                                        <th data-lang-en="Amount" data-lang-so="Qadarka">Qadarka</th>
-                                        <th data-lang-en="Description" data-lang-so="Faahfaahin">Faahfaahin</th>
+                                        <th data-lang-en="Date" data-lang-so="Taariikh">Date</th>
+                                        <th data-lang-en="Type" data-lang-so="Nooca">Type</th>
+                                        <th data-lang-en="Account" data-lang-so="Xisaab">Account</th>
+                                        <th data-lang-en="Currency" data-lang-so="Lacagta">Currency</th>
+                                        <th data-lang-en="Amount" data-lang-so="Qadarka">Amount</th>
+                                        <th data-lang-en="Description" data-lang-so="Faahfaahin">Description</th>
                                     </tr>
                                 </thead>
                                 <tbody id="reportTableBody"></tbody>
@@ -660,7 +655,7 @@
                 <section id="view-settings" class="space-y-6 hidden">
                     <h2 class="text-lg md:text-2xl font-bold">
                         <i class="fa-solid fa-gear"></i>
-                        <span data-lang-en="Settings" data-lang-so="Habaynta">Habaynta</span>
+                        <span data-lang-en="Settings" data-lang-so="Habaynta">Settings</span>
                     </h2>
 
                     <div id="settingsMenu" class="space-y-4">
@@ -676,16 +671,16 @@
                             <button type="button" class="set-row" onclick="openSettingsPanel('profile')">
                                 <span class="set-ico"><i class="fa-solid fa-user"></i></span>
                                 <span class="set-txt">
-                                    <b data-lang-en="Profile information" data-lang-so="Macluumaadka profile-ka">Macluumaadka profile-ka</b>
-                                    <small data-lang-en="Name, role and photo" data-lang-so="Magac, doorka iyo sawir">Magac, doorka iyo sawir</small>
+                                    <b data-lang-en="Profile information" data-lang-so="Macluumaadka profile-ka">Profile information</b>
+                                    <small data-lang-en="Name, role and photo" data-lang-so="Magac, doorka iyo sawir">Name, role and photo</small>
                                 </span>
                                 <i class="fa-solid fa-chevron-right set-chev"></i>
                             </button>
                             <button type="button" class="set-row" onclick="openSettingsPanel('security')">
                                 <span class="set-ico"><i class="fa-solid fa-shield-halved"></i></span>
                                 <span class="set-txt">
-                                    <b data-lang-en="Security" data-lang-so="Amniga">Amniga</b>
-                                    <small data-lang-en="Change your password" data-lang-so="Bedel password-kaaga">Bedel password-kaaga</small>
+                                    <b data-lang-en="Security" data-lang-so="Amniga">Security</b>
+                                    <small data-lang-en="Change your password" data-lang-so="Bedel password-kaaga">Change your password</small>
                                 </span>
                                 <i class="fa-solid fa-chevron-right set-chev"></i>
                             </button>
@@ -695,16 +690,16 @@
                             <button type="button" class="set-row" onclick="openSettingsPanel('language')">
                                 <span class="set-ico"><i class="fa-solid fa-language"></i></span>
                                 <span class="set-txt">
-                                    <b data-lang-en="Language" data-lang-so="Luqadda">Luqadda</b>
-                                    <small data-lang-en="English or Somali" data-lang-so="Ingiriisi ama Soomaali">Ingiriisi ama Soomaali</small>
+                                    <b data-lang-en="Language" data-lang-so="Luqadda">Language</b>
+                                    <small data-lang-en="English or Somali" data-lang-so="Ingiriisi ama Soomaali">English or Somali</small>
                                 </span>
                                 <i class="fa-solid fa-chevron-right set-chev"></i>
                             </button>
                             <button type="button" class="set-row" onclick="openSettingsPanel('appearance')">
                                 <span class="set-ico"><i class="fa-solid fa-palette"></i></span>
                                 <span class="set-txt">
-                                    <b data-lang-en="Appearance" data-lang-so="Muuqaalka">Muuqaalka</b>
-                                    <small data-lang-en="Dark or light mode" data-lang-so="Habka madow ama iftiin">Habka madow ama iftiin</small>
+                                    <b data-lang-en="Appearance" data-lang-so="Muuqaalka">Appearance</b>
+                                    <small data-lang-en="Dark or light mode" data-lang-so="Habka madow ama iftiin">Dark or light mode</small>
                                 </span>
                                 <i class="fa-solid fa-chevron-right set-chev"></i>
                             </button>
@@ -714,24 +709,24 @@
                             <button type="button" class="set-row" onclick="openSettingsPanel('report')">
                                 <span class="set-ico"><i class="fa-solid fa-file-lines"></i></span>
                                 <span class="set-txt">
-                                    <b data-lang-en="Report" data-lang-so="Warbixinta">Warbixinta</b>
-                                    <small data-lang-en="Download PDF or CSV" data-lang-so="Soo deg PDF ama CSV">Soo deg PDF ama CSV</small>
+                                    <b data-lang-en="Report" data-lang-so="Warbixinta">Report</b>
+                                    <small data-lang-en="Download PDF or CSV" data-lang-so="Soo deg PDF ama CSV">Download PDF or CSV</small>
                                 </span>
                                 <i class="fa-solid fa-chevron-right set-chev"></i>
                             </button>
                             <button type="button" class="set-row" onclick="openSettingsPanel('backup')">
                                 <span class="set-ico"><i class="fa-solid fa-cloud-arrow-down"></i></span>
                                 <span class="set-txt">
-                                    <b data-lang-en="Backup" data-lang-so="Kaydka xogta">Kaydka xogta</b>
-                                    <small data-lang-en="Export or import your data" data-lang-so="Soo dag ama geli xogtaada">Soo dag ama geli xogtaada</small>
+                                    <b data-lang-en="Backup" data-lang-so="Kaydka xogta">Backup</b>
+                                    <small data-lang-en="Export or import your data" data-lang-so="Soo dag ama geli xogtaada">Export or import your data</small>
                                 </span>
                                 <i class="fa-solid fa-chevron-right set-chev"></i>
                             </button>
                             <button type="button" class="set-row" onclick="openSettingsPanel('management')">
                                 <span class="set-ico"><i class="fa-solid fa-sliders"></i></span>
                                 <span class="set-txt">
-                                    <b data-lang-en="Management" data-lang-so="Maaraynta">Maaraynta</b>
-                                    <small data-lang-en="Clear and reset data" data-lang-so="Nadiifi oo dib u deji xogta">Nadiifi oo dib u deji xogta</small>
+                                    <b data-lang-en="Management" data-lang-so="Maaraynta">Management</b>
+                                    <small data-lang-en="Clear and reset data" data-lang-so="Nadiifi oo dib u deji xogta">Clear and reset data</small>
                                 </span>
                                 <i class="fa-solid fa-chevron-right set-chev"></i>
                             </button>
@@ -741,28 +736,28 @@
                             <button type="button" class="set-row" onclick="openSettingsPanel('about')">
                                 <span class="set-ico"><i class="fa-solid fa-circle-info"></i></span>
                                 <span class="set-txt">
-                                    <b data-lang-en="About app" data-lang-so="Ku saabsan app-ka">Ku saabsan app-ka</b>
-                                    <small data-lang-en="Version and information" data-lang-so="Nooca iyo macluumaad">Nooca iyo macluumaad</small>
+                                    <b data-lang-en="About app" data-lang-so="Ku saabsan app-ka">About app</b>
+                                    <small data-lang-en="Version and information" data-lang-so="Nooca iyo macluumaad">Version and information</small>
                                 </span>
                                 <i class="fa-solid fa-chevron-right set-chev"></i>
                             </button>
                             <button type="button" class="set-row danger" onclick="confirmLogout()">
                                 <span class="set-ico"><i class="fa-solid fa-right-from-bracket"></i></span>
                                 <span class="set-txt">
-                                    <b data-lang-en="Logout" data-lang-so="Ka bax">Ka bax</b>
-                                    <small data-lang-en="Sign out of your account" data-lang-so="Ka bax akoonkaaga">Ka bax akoonkaaga</small>
+                                    <b data-lang-en="Logout" data-lang-so="Ka bax">Logout</b>
+                                    <small data-lang-en="Sign out of your account" data-lang-so="Ka bax akoonkaaga">Sign out of your account</small>
                                 </span>
                                 <i class="fa-solid fa-chevron-right set-chev"></i>
                             </button>
                         </div>
 
-                        <p class="set-version">Maalx v1.0.0.0</p>
+                        <p class="set-version">KeepSave v1.0.0.0</p>
                     </div>
 
                     <div class="set-panel hidden" id="sp-profile">
                         <div class="set-head">
                             <button type="button" class="set-back" onclick="closeSettingsPanel()" aria-label="Back"><i class="fa-solid fa-arrow-left"></i></button>
-                            <h3 data-lang-en="Profile information" data-lang-so="Macluumaadka profile-ka">Macluumaadka profile-ka</h3>
+                            <h3 data-lang-en="Profile information" data-lang-so="Macluumaadka profile-ka">Profile information</h3>
                         </div>
                         <div class="card set-body">
                             <div class="flex items-center gap-4">
@@ -771,54 +766,79 @@
                                     <input type="file" id="avatarFileInput" accept="image/*" class="hidden" onchange="handleAvatarUpload(event)">
                                     <button type="button" class="btn-outline" onclick="document.getElementById('avatarFileInput').click()">
                                         <i class="fa-solid fa-camera"></i>
-                                        <span data-lang-en="Change photo" data-lang-so="Bedel sawirka">Bedel sawirka</span>
+                                        <span data-lang-en="Change photo" data-lang-so="Bedel sawirka">Change photo</span>
                                     </button>
-                                    <p class="text-xs text-slate-500 mt-2" data-lang-en="JPG or PNG, up to 2MB" data-lang-so="JPG ama PNG, ilaa 2MB">JPG ama PNG, ilaa 2MB</p>
+                                    <p class="text-xs text-slate-500 mt-2" data-lang-en="JPG or PNG, up to 2MB" data-lang-so="JPG ama PNG, ilaa 2MB">JPG or PNG, up to 2MB</p>
                                 </div>
                             </div>
                             <div class="set-field">
-                                <label data-lang-en="Full name" data-lang-so="Magaca oo buuxa">Magaca oo buuxa</label>
+                                <label data-lang-en="Full name" data-lang-so="Magaca oo buuxa">Full name</label>
                                 <input type="text" id="settingsName" class="input-field">
                             </div>
                             <div class="set-field">
-                                <label data-lang-en="Role" data-lang-so="Doorka">Doorka</label>
+                                <label data-lang-en="Role" data-lang-so="Doorka">Role</label>
                                 <input type="text" id="settingsRole" class="input-field">
+                            </div>
+                            <div class="set-field">
+                                <label for="settingsProfilePassword" data-lang-en="Current password" data-lang-so="Password-ka hadda">Current password</label>
+                                <div class="set-pass">
+                                    <input type="password" id="settingsProfilePassword" placeholder="&#8226;&#8226;&#8226;&#8226;&#8226;&#8226;&#8226;&#8226;" class="input-field has-trail" autocomplete="current-password">
+                                    <button type="button" class="trail" onclick="togglePasswordVisibility('settingsProfilePassword', 'settingsProfilePasswordEye')" aria-label="Show password"><i id="settingsProfilePasswordEye" class="fa-solid fa-eye"></i></button>
+                                </div>
+                                <p class="text-xs text-slate-500 mt-2" data-lang-en="Required to confirm when you change your name." data-lang-so="Waa loo baahan yahay xaqiijinta marka magacaaga la bedelayo.">Required to confirm when you change your name.</p>
                             </div>
                             <button onclick="saveProfile()" class="btn-primary w-full">
                                 <i class="fa-solid fa-floppy-disk"></i>
-                                <span data-lang-en="Save changes" data-lang-so="Kaydi isbeddellada">Kaydi isbeddellada</span>
+                                <span data-lang-en="Save changes" data-lang-so="Kaydi isbeddellada">Save changes</span>
                             </button>
                         </div>
                     </div>
                     <div class="set-panel hidden" id="sp-security">
                         <div class="set-head">
                             <button type="button" class="set-back" onclick="closeSettingsPanel()" aria-label="Back"><i class="fa-solid fa-arrow-left"></i></button>
-                            <h3 data-lang-en="Security" data-lang-so="Amniga">Amniga</h3>
+                            <h3 data-lang-en="Security" data-lang-so="Amniga">Security</h3>
                         </div>
                         <div class="card set-body">
                             <div class="set-field">
-                                <label data-lang-en="New password" data-lang-so="Password cusub">Password cusub</label>
-                                <input type="password" id="settingsNewPassword" placeholder="&#8226;&#8226;&#8226;&#8226;&#8226;&#8226;&#8226;&#8226;" class="input-field" autocomplete="new-password">
+                                <label for="settingsCurrentPassword" data-lang-en="Current password" data-lang-so="Password-ka hadda">Current password</label>
+                                <div class="set-pass">
+                                    <input type="password" id="settingsCurrentPassword" placeholder="&#8226;&#8226;&#8226;&#8226;&#8226;&#8226;&#8226;&#8226;" class="input-field has-trail" autocomplete="current-password">
+                                    <button type="button" class="trail" onclick="togglePasswordVisibility('settingsCurrentPassword', 'settingsCurrentPasswordEye')" aria-label="Show password"><i id="settingsCurrentPasswordEye" class="fa-solid fa-eye"></i></button>
+                                </div>
                             </div>
-                            <p class="text-xs text-slate-500" data-lang-en="Use at least 6 characters. Leave empty to keep your current password." data-lang-so="Isticmaal ugu yaraan 6 xaraf. Ka tag madhan si password-ka hadda uu u sii jiro.">Isticmaal ugu yaraan 6 xaraf. Ka tag madhan si password-ka hadda uu u sii jiro.</p>
-                            <button onclick="saveProfile()" class="btn-primary w-full">
+                            <div class="set-field">
+                                <label for="settingsNewPassword" data-lang-en="New password" data-lang-so="Password cusub">New password</label>
+                                <div class="set-pass">
+                                    <input type="password" id="settingsNewPassword" placeholder="&#8226;&#8226;&#8226;&#8226;&#8226;&#8226;&#8226;&#8226;" class="input-field has-trail" autocomplete="new-password">
+                                    <button type="button" class="trail" onclick="togglePasswordVisibility('settingsNewPassword', 'settingsNewPasswordEye')" aria-label="Show password"><i id="settingsNewPasswordEye" class="fa-solid fa-eye"></i></button>
+                                </div>
+                            </div>
+                            <div class="set-field">
+                                <label for="settingsConfirmPassword" data-lang-en="Confirm new password" data-lang-so="Xaqiiji password-ka cusub">Confirm new password</label>
+                                <div class="set-pass">
+                                    <input type="password" id="settingsConfirmPassword" placeholder="&#8226;&#8226;&#8226;&#8226;&#8226;&#8226;&#8226;&#8226;" class="input-field has-trail" autocomplete="new-password">
+                                    <button type="button" class="trail" onclick="togglePasswordVisibility('settingsConfirmPassword', 'settingsConfirmPasswordEye')" aria-label="Show password"><i id="settingsConfirmPasswordEye" class="fa-solid fa-eye"></i></button>
+                                </div>
+                            </div>
+                            <p class="text-xs text-slate-500" data-lang-en="Use at least 6 characters. You must enter your current password to confirm the change." data-lang-so="Isticmaal ugu yaraan 6 xaraf. Waa inaad gelisaa password-ka hadda si aad u xaqiijiso isbeddelka.">Use at least 6 characters. You must enter your current password to confirm the change.</p>
+                            <button onclick="updatePassword()" class="btn-primary w-full">
                                 <i class="fa-solid fa-key"></i>
-                                <span data-lang-en="Update password" data-lang-so="Cusboonaysii password-ka">Cusboonaysii password-ka</span>
+                                <span data-lang-en="Update password" data-lang-so="Cusboonaysii password-ka">Update password</span>
                             </button>
                         </div>
                     </div>
                     <div class="set-panel hidden" id="sp-language">
                         <div class="set-head">
                             <button type="button" class="set-back" onclick="closeSettingsPanel()" aria-label="Back"><i class="fa-solid fa-arrow-left"></i></button>
-                            <h3 data-lang-en="Language" data-lang-so="Luqadda">Luqadda</h3>
+                            <h3 data-lang-en="Language" data-lang-so="Luqadda">Language</h3>
                         </div>
                         <div class="card set-body">
                             <div class="grid grid-cols-2 gap-3">
-                                <button onclick="setLanguage('en')" id="lang-btn-en" class="btn-outline w-full">
+                                <button onclick="setLanguage('en')" id="lang-btn-en" class="btn-primary w-full">
                                     <i class="fa-solid fa-globe"></i>
                                     English
                                 </button>
-                                <button onclick="setLanguage('so')" id="lang-btn-so" class="btn-primary w-full">
+                                <button onclick="setLanguage('so')" id="lang-btn-so" class="btn-outline w-full">
                                     <i class="fa-solid fa-flag"></i>
                                     Somali
                                 </button>
@@ -828,20 +848,20 @@
                     <div class="set-panel hidden" id="sp-appearance">
                         <div class="set-head">
                             <button type="button" class="set-back" onclick="closeSettingsPanel()" aria-label="Back"><i class="fa-solid fa-arrow-left"></i></button>
-                            <h3 data-lang-en="Appearance" data-lang-so="Muuqaalka">Muuqaalka</h3>
+                            <h3 data-lang-en="Appearance" data-lang-so="Muuqaalka">Appearance</h3>
                         </div>
                         <div class="card set-body">
                             <div class="flex items-center justify-between rounded-2xl p-4" style="background: var(--primary-bg);">
                                 <span class="flex items-center gap-2 text-slate-300">
                                     <i class="fa-solid fa-moon"></i>
-                                    <span data-lang-en="Dark" data-lang-so="Madow">Madow</span>
+                                    <span data-lang-en="Dark" data-lang-so="Madow">Dark</span>
                                 </span>
                                 <div id="themeToggle" class="toggle-switch active cursor-pointer" onclick="toggleTheme()">
                                     <div class="toggle-knob"></div>
                                 </div>
                                 <span class="flex items-center gap-2 text-slate-300">
                                     <i class="fa-solid fa-sun" style="color: var(--primary);"></i>
-                                    <span data-lang-en="Light" data-lang-so="Iftiin">Iftiin</span>
+                                    <span data-lang-en="Light" data-lang-so="Iftiin">Light</span>
                                 </span>
                             </div>
                         </div>
@@ -849,67 +869,67 @@
                     <div class="set-panel hidden" id="sp-report">
                         <div class="set-head">
                             <button type="button" class="set-back" onclick="closeSettingsPanel()" aria-label="Back"><i class="fa-solid fa-arrow-left"></i></button>
-                            <h3 data-lang-en="Report" data-lang-so="Warbixinta">Warbixinta</h3>
+                            <h3 data-lang-en="Report" data-lang-so="Warbixinta">Report</h3>
                         </div>
                         <div class="card set-body">
                             <div class="set-field">
-                                <label data-lang-en="Report range" data-lang-so="Xilliga warbixinta">Xilliga warbixinta</label>
+                                <label data-lang-en="Report range" data-lang-so="Xilliga warbixinta">Report range</label>
                                 <select id="exportRangeSelect" onchange="setExportRange(this.value)" class="input-field">
-                                    <option value="all" data-lang-en="Transaction History (All)" data-lang-so="Taariikhda Dhaqdhaqaaqa (Oo Dhan)">Taariikhda Dhaqdhaqaaqa (Oo Dhan)</option>
-                                    <option value="today" data-lang-en="Today's Transactions" data-lang-so="Dhaqdhaqaaqa Maanta">Dhaqdhaqaaqa Maanta</option>
+                                    <option value="all" data-lang-en="Transaction History (All)" data-lang-so="Taariikhda Dhaqdhaqaaqa (Oo Dhan)">Transaction History (All)</option>
+                                    <option value="today" data-lang-en="Today's Transactions" data-lang-so="Dhaqdhaqaaqa Maanta">Today's Transactions</option>
                                 </select>
                             </div>
                             <div class="grid grid-cols-2 gap-3">
                                 <button type="button" onclick="downloadPDF()" class="btn-primary">
                                     <i class="fa-solid fa-file-pdf"></i>
-                                    <span data-lang-en="Download PDF" data-lang-so="Soo dag PDF">Soo dag PDF</span>
+                                    <span data-lang-en="Download PDF" data-lang-so="Soo dag PDF">Download PDF</span>
                                 </button>
                                 <button type="button" onclick="exportCSV()" class="btn-outline">
                                     <i class="fa-solid fa-file-csv"></i>
-                                    <span data-lang-en="Export CSV" data-lang-so="Soo dag CSV">Soo dag CSV</span>
+                                    <span data-lang-en="Export CSV" data-lang-so="Soo dag CSV">Export CSV</span>
                                 </button>
                             </div>
-                            <p class="text-xs text-slate-500" data-lang-en="PDF and CSV follow the report range above (All history or Today)." data-lang-so="PDF iyo CSV waxay raacayaan xilliga warbixinta ee sare (Taariikhda oo dhan ama Maanta).">PDF iyo CSV waxay raacayaan xilliga warbixinta ee sare (Taariikhda oo dhan ama Maanta).</p>
+                            <p class="text-xs text-slate-500" data-lang-en="PDF and CSV follow the report range above (All history or Today)." data-lang-so="PDF iyo CSV waxay raacayaan xilliga warbixinta ee sare (Taariikhda oo dhan ama Maanta).">PDF and CSV follow the report range above (All history or Today).</p>
                         </div>
                     </div>
                     <div class="set-panel hidden" id="sp-backup">
                         <div class="set-head">
                             <button type="button" class="set-back" onclick="closeSettingsPanel()" aria-label="Back"><i class="fa-solid fa-arrow-left"></i></button>
-                            <h3 data-lang-en="Backup" data-lang-so="Kaydka xogta">Kaydka xogta</h3>
+                            <h3 data-lang-en="Backup" data-lang-so="Kaydka xogta">Backup</h3>
                         </div>
                         <div class="card set-body">
                             <div class="grid grid-cols-2 gap-3">
                                 <button type="button" onclick="exportJSON()" class="btn-outline">
                                     <i class="fa-solid fa-file-code"></i>
-                                    <span data-lang-en="Export JSON" data-lang-so="Soo dag JSON">Soo dag JSON</span>
+                                    <span data-lang-en="Export JSON" data-lang-so="Soo dag JSON">Export JSON</span>
                                 </button>
                                 <button type="button" class="btn-outline" onclick="document.getElementById('importJsonInput').click()">
                                     <i class="fa-solid fa-file-import"></i>
-                                    <span data-lang-en="Import JSON" data-lang-so="Geli JSON">Geli JSON</span>
+                                    <span data-lang-en="Import JSON" data-lang-so="Geli JSON">Import JSON</span>
                                 </button>
                             </div>
                             <input type="file" id="importJsonInput" accept="application/json" class="hidden" onchange="handleImportJSON(event)">
-                            <p class="text-xs text-slate-500" data-lang-en="JSON export/import always covers all data (accounts, loans and transactions) for backup and restore." data-lang-so="JSON-ku wuxuu had iyo jeer daboolaa dhammaan xogta (akoonnada, amaahda iyo dhaqdhaqaaqa) si loo kaydiyo loona soo celiyo.">JSON-ku wuxuu had iyo jeer daboolaa dhammaan xogta (akoonnada, amaahda iyo dhaqdhaqaaqa) si loo kaydiyo loona soo celiyo.</p>
+                            <p class="text-xs text-slate-500" data-lang-en="JSON export/import always covers all data (accounts, loans and transactions) for backup and restore." data-lang-so="JSON-ku wuxuu had iyo jeer daboolaa dhammaan xogta (akoonnada, amaahda iyo dhaqdhaqaaqa) si loo kaydiyo loona soo celiyo.">JSON export/import always covers all data (accounts, loans and transactions) for backup and restore.</p>
                         </div>
                     </div>
                     <div class="set-panel hidden" id="sp-management">
                         <div class="set-head">
                             <button type="button" class="set-back" onclick="closeSettingsPanel()" aria-label="Back"><i class="fa-solid fa-arrow-left"></i></button>
-                            <h3 data-lang-en="Management" data-lang-so="Maaraynta">Maaraynta</h3>
+                            <h3 data-lang-en="Management" data-lang-so="Maaraynta">Management</h3>
                         </div>
                         <div class="card set-body">
                             <div class="grid grid-cols-2 gap-3">
                                 <button onclick="resetAllData()" class="btn-danger opacity-80" title="Reset All" disabled>
                                     <i class="fa-solid fa-trash"></i>
-                                    <span data-lang-en="Reset" data-lang-so="Dib u deji">Dib u deji</span>
+                                    <span data-lang-en="Reset" data-lang-so="Dib u deji">Reset</span>
                                 </button>
                                 <button onclick="clearLoans()" class="btn-primary opacity-80" title="Clear Loans">
                                     <i class="fa-solid fa-money-bill-wave"></i>
-                                    <span data-lang-en="Clear loans" data-lang-so="Nadiifi amaahda">Nadiifi amaahda</span>
+                                    <span data-lang-en="Clear loans" data-lang-so="Nadiifi amaahda">Clear loans</span>
                                 </button>
                                 <button onclick="clearTransactions()" class="btn-primary opacity-80 col-span-2" disabled>
                                     <i class="fa-solid fa-receipt"></i>
-                                    <span data-lang-en="Clear transactions" data-lang-so="Nadiifi dhaqdhaqaaqa">Nadiifi dhaqdhaqaaqa</span>
+                                    <span data-lang-en="Clear transactions" data-lang-so="Nadiifi dhaqdhaqaaqa">Clear transactions</span>
                                 </button>
                             </div>
                         </div>
@@ -917,18 +937,18 @@
                     <div class="set-panel hidden" id="sp-about">
                         <div class="set-head">
                             <button type="button" class="set-back" onclick="closeSettingsPanel()" aria-label="Back"><i class="fa-solid fa-arrow-left"></i></button>
-                            <h3 data-lang-en="About app" data-lang-so="Ku saabsan app-ka">Ku saabsan app-ka</h3>
+                            <h3 data-lang-en="About app" data-lang-so="Ku saabsan app-ka">About app</h3>
                         </div>
                         <div class="card set-body">
                             <div class="set-about">
-                                <img src="logo/logo-icon.svg" alt="Maalx" class="set-about-logo">
-                                <h4>Maalx</h4>
-                                <p data-lang-en="Finance and business management" data-lang-so="Maaraynta lacagta iyo ganacsiga">Maaraynta lacagta iyo ganacsiga</p>
+                                <img src="logo/logo-icon.svg" alt="KeepSave" class="set-about-logo">
+                                <h4>KeepSave</h4>
+                                <p data-lang-en="Finance and business management" data-lang-so="Maaraynta lacagta iyo ganacsiga">Finance and business management</p>
                             </div>
                             <div class="set-about-list">
-                                <div><span data-lang-en="Version" data-lang-so="Nooca">Nooca</span><b>1.0.0.0</b></div>
-                                <div><span data-lang-en="Wallets and loans" data-lang-so="Wallet-yada iyo amaahda">Wallet-yada iyo amaahda</span><b>USD &middot; SLSH &middot; ETB</b></div>
-                                <div><span data-lang-en="Languages" data-lang-so="Luqadaha">Luqadaha</span><b>English &middot; Soomaali</b></div>
+                                <div><span data-lang-en="Version" data-lang-so="Nooca">Version</span><b>1.0.0.0</b></div>
+                                <div><span data-lang-en="Wallets and loans" data-lang-so="Wallet-yada iyo amaahda">Wallets and loans</span><b>USD &middot; SLSH &middot; ETB</b></div>
+                                <div><span data-lang-en="Languages" data-lang-so="Luqadaha">Languages</span><b>English &middot; Soomaali</b></div>
                             </div>
                         </div>
                     </div>
@@ -940,15 +960,15 @@
         <nav class="md:hidden mobile-nav-bar">
             <button onclick="switchTab('dashboard')" class="mobile-nav-btn active flex flex-col items-center gap-0.5 text-slate-400" id="mobile-dashboard">
                 <i class="fa-solid fa-gauge-high text-lg"></i>
-                <span class="text-[10px] font-medium" data-lang-en="Home" data-lang-so="Guri">Guri</span>
+                <span class="text-[10px] font-medium" data-lang-en="Home" data-lang-so="Guri">Home</span>
             </button>
             <button onclick="switchTab('deposit')" class="mobile-nav-btn flex flex-col items-center gap-0.5 text-slate-400" id="mobile-deposit">
                 <i class="fa-solid fa-arrow-down text-lg"></i>
-                <span class="text-[10px] font-medium" data-lang-en="Deposit" data-lang-so="Kushub">Kushubo</span>
+                <span class="text-[10px] font-medium" data-lang-en="Deposit" data-lang-so="Kushub">Deposit</span>
             </button>
             <button onclick="switchTab('withdraw')" class="mobile-nav-btn flex flex-col items-center gap-0.5 text-slate-400" id="mobile-withdraw">
                 <i class="fa-solid fa-arrow-up text-lg"></i>
-                <span class="text-[10px] font-medium" data-lang-en="Withdraw" data-lang-so="La Bax">La Bax</span>
+                <span class="text-[10px] font-medium" data-lang-en="Withdraw" data-lang-so="La Bax">Withdraw</span>
             </button>
             <button onclick="switchTab('transfer')" class="mobile-nav-btn flex flex-col items-center gap-0.5 text-slate-400" id="mobile-transfer">
                 <i class="fa-solid fa-right-left text-lg"></i>
@@ -956,15 +976,15 @@
             </button>
             <button onclick="switchTab('loans')" class="mobile-nav-btn flex flex-col items-center gap-0.5 text-slate-400" id="mobile-loans">
                 <i class="fa-solid fa-hand-holding-dollar text-lg"></i>
-                <span class="text-[10px] font-medium" data-lang-en="Loans" data-lang-so="Amaah">Amaah</span>
+                <span class="text-[10px] font-medium" data-lang-en="Loans" data-lang-so="Amaah">Loans</span>
             </button>
             <button onclick="switchTab('reports')" class="mobile-nav-btn flex flex-col items-center gap-0.5 text-slate-400" id="mobile-reports">
                 <i class="fa-solid fa-chart-simple text-lg"></i>
-                <span class="text-[10px] font-medium" data-lang-en="Reports" data-lang-so="Warbixin">Warbixin</span>
+                <span class="text-[10px] font-medium" data-lang-en="Reports" data-lang-so="Warbixin">Reports</span>
             </button>
             <button onclick="switchTab('settings')" class="mobile-nav-btn flex flex-col items-center gap-0.5 text-slate-400" id="mobile-settings">
                 <i class="fa-solid fa-gear text-lg"></i>
-                <span class="text-[10px] font-medium" data-lang-en="Settings" data-lang-so="Habaynta">Habaynta</span>
+                <span class="text-[10px] font-medium" data-lang-en="Settings" data-lang-so="Habaynta">Settings</span>
             </button>
         </nav>
     </div>
